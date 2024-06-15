@@ -1,0 +1,10 @@
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\bin\Debug\DeObfuscar.exe.config
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\bin\Debug\DeObfuscar.exe
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\bin\Debug\DeObfuscar.pdb
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\bin\Debug\dnlib.dll
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\bin\Debug\dnlib.xml
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\obj\Debug\DeObfuscar.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\obj\Debug\DeObfuscar.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\obj\Debug\DeObfuscar.csproj.Up2Date
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\obj\Debug\DeObfuscar.exe
+C:\Users\diazc\Downloads\DeObfuscar-Static-master\DeObfuscar-Static-master\DeObfuscar\obj\Debug\DeObfuscar.pdb
