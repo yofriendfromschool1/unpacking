@@ -1,0 +1,14 @@
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\PROShine.Cleaner.exe.config
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\PROShine.Cleaner.exe
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\PROShine.Cleaner.pdb
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Mono.Cecil.dll
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Mono.Cecil.Rocks.dll
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Newtonsoft.Json.dll
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\bin\Debug\Newtonsoft.Json.xml
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\obj\Debug\PROShine.Cleaner.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\obj\Debug\PROShine.Cleaner.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\obj\Debug\PROShine.EF2F51C7.Up2Date
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\obj\Debug\PROShine.Cleaner.exe
+C:\Users\diazc\Downloads\proshine-cleaner-master\proshine-cleaner-master\PROShine.Cleaner\obj\Debug\PROShine.Cleaner.pdb
