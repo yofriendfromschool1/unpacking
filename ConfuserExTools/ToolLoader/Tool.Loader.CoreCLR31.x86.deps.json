@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Tool.Loader.CoreCLR31.x86/3.0.10.0": {
+        "dependencies": {
+          "Tool.Interface": "3.0.10"
+        },
+        "runtime": {
+          "Tool.Loader.CoreCLR31.x86.dll": {}
+        }
+      },
+      "Tool.Interface/3.0.10": {
+        "runtime": {
+          "Tool.Interface.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Tool.Loader.CoreCLR31.x86/3.0.10.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tool.Interface/3.0.10": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tool.Interface</name>
+    </assembly>
+    <members>
+        <member name="T:Tool.Interface.ITool`1">
+            <summary>
+            Tool interface
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+        </member>
+        <member name="P:Tool.Interface.ITool`1.Title">
+            <summary>
+            Returns tool title
+            </summary>
+        </member>
+        <member name="M:Tool.Interface.ITool`1.Execute(`0)">
+            <summary>
+            Executes current tool
+            </summary>
+            <param name="options">Tool options</param>
+        </member>
+        <member name="T:Tool.Logging.AsyncLogger">
+            <summary>
+            Async logger.
+            In derived class, you must override <see cref="M:Tool.Logging.AsyncLogger.LogCore(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})"/>.
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.AsyncLogger.IsLocked">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.LogCore(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Immediately write the log without buffer. Derived class must override this method!
+            </summary>
+            <param name="value"></param>
+            <param name="level"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.EnterLock">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.ExitLock">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.CheckFreed">
+            <summary>
+            Checks current logger is freed
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.FormatException(System.Exception)">
+            <summary>
+            Format exception
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Tool.Logging.AsyncLogger.Level">
+            <inheritdoc />
+        </member>
+        <member name="P:Tool.Logging.AsyncLogger.IsAsync">
+            <inheritdoc />
+        </member>
+        <member name="P:Tool.Logging.AsyncLogger.IsIdle">
+            <inheritdoc />
+        </member>
+        <member name="P:Tool.Logging.AsyncLogger.QueueCount">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Info">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Info(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Warning(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Error(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Verbose1(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Verbose2(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Verbose3(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Exception(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Log(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})">
+            <inheritdoc />
+        </member>
+        <member name="M:Tool.Logging.AsyncLogger.Flush">
+            <inheritdoc />
+        </member>
+        <member name="T:Tool.Logging.DefaultLogger">
+            <summary>
+            Default logger implement
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.DefaultLogger.ConsoleOnlyInstance">
+            <summary>
+            Logger instance which only writes console
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.DefaultLogger.#ctor">
+            <summary>
+            Constructor
+            Do NOT make it public! Multi <see cref="T:Tool.Logging.AsyncLogger.LogCallback"/> instances will cause <see cref="M:Tool.Logging.AsyncLogger.LoggerCore.AsyncLoop"/> slowly!
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.DefaultLogger.#ctor(System.Boolean,System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="writeConsole"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Tool.Logging.DefaultLogger.#ctor(System.Boolean,System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="writeConsole"></param>
+            <param name="stream"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:Tool.Logging.DefaultLogger.LogCore(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})">
+            <inheritdoc />
+        </member>
+        <member name="T:Tool.Logging.LogLevel">
+            <summary>
+            Log level
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Warning">
+            <summary>
+            Warning
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Info">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Verbose1">
+            <summary>
+            Verbose info（Level 1）
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Verbose2">
+            <summary>
+            Verbose info（Level 2）
+            </summary>
+        </member>
+        <member name="F:Tool.Logging.LogLevel.Verbose3">
+            <summary>
+            Verbose info（Level 3）
+            </summary>
+        </member>
+        <member name="T:Tool.Logging.ILogger">
+            <summary>
+            Tool logger interface
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.ILogger.Level">
+            <summary>
+            Indicates current log level, only logs of which log level greater than or equal to current log level will be logged
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.ILogger.IsAsync">
+            <summary>
+            Indicates current logger in running in async mode
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.ILogger.IsIdle">
+            <summary>
+            Indicates whether log queue is empty and background logger thread is idle (for async mode)
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.ILogger.QueueCount">
+            <summary>
+            Indicates current enqueued log count (for async mode)
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.ILogger.IsLocked">
+            <summary>
+            Indicates whether current logger is locked. If locked, only who owners lock can access current logger
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Info">
+            <summary>
+            Logs empty line
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Info(System.String)">
+            <summary>
+            Logs info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Warning(System.String)">
+            <summary>
+            Logs warning and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Error(System.String)">
+            <summary>
+            Logs error and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Verbose1(System.String)">
+            <summary>
+            Logs level 1 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Verbose2(System.String)">
+            <summary>
+            Logs level 2 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Verbose3(System.String)">
+            <summary>
+            Logs level 3 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Exception(System.Exception)">
+            <summary>
+            Logs exception and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Log(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Logs text with specified color and wraps
+            </summary>
+            <param name="value"></param>
+            <param name="level"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Tool.Logging.ILogger.Flush">
+            <summary>
+            Immediately flushes buffer and waits to clear buffer (for async mode)
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.ILogger.EnterLock">
+            <summary>
+            Gets current logger with lock, current logger can be accessd only by the returned child logger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tool.Logging.ILogger.ExitLock">
+            <summary>
+            Exits lock mode and returns parent logger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tool.Logging.Logger">
+            <summary>
+            Global logger
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.Impl">
+            <summary>
+            Gets current logger implement
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Tool.Logging.Logger.DefaultImpl">
+            <summary>
+            Gets default logger implement
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.ExternImpl">
+            <summary>
+            Gets or sets customized logger
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.Level">
+            <summary>
+            Indicates current log level, only logs of which log level greater than or equal to current log level will be logged
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.IsAsync">
+            <summary>
+            Indicates current logger in running in async mode
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.IsIdle">
+            <summary>
+            Indicates whether log queue is empty and background logger thread is idle (for async mode)
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.QueueCount">
+            <summary>
+            Indicates current enqueued log count (for async mode)
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.Logger.IsLocked">
+            <summary>
+            Indicates whether current logger is locked. If locked, only who owners lock can access current logger
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.Logger.Info">
+            <summary>
+            Logs empty line
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.Logger.Info(System.String)">
+            <summary>
+            Logs info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Warning(System.String)">
+            <summary>
+            Logs warning and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Error(System.String)">
+            <summary>
+            Logs error and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose1(System.String)">
+            <summary>
+            Logs level 1 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose1(Tool.Logging.Logger.Verbose1InterpolatedStringHandler@)">
+            <summary>
+            Logs level 1 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose2(System.String)">
+            <summary>
+            Logs level 2 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose2(Tool.Logging.Logger.Verbose2InterpolatedStringHandler@)">
+            <summary>
+            Logs level 2 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose3(System.String)">
+            <summary>
+            Logs level 3 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Verbose3(Tool.Logging.Logger.Verbose3InterpolatedStringHandler@)">
+            <summary>
+            Logs level 3 verbose info and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Exception(System.Exception)">
+            <summary>
+            Logs exception and wraps
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Log(System.String,Tool.Logging.LogLevel,System.Nullable{System.ConsoleColor})">
+            <summary>
+            Logs text with specified color and wraps
+            </summary>
+            <param name="value"></param>
+            <param name="level"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Tool.Logging.Logger.Flush">
+            <summary>
+            Immediately flushes buffer and waits to clear buffer (for async mode)
+            </summary>
+        </member>
+        <member name="M:Tool.Logging.Logger.EnterLock">
+            <summary>
+            Gets current logger with lock, current logger can be accessd only by the returned sub logger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tool.Logging.Logger.ExitLock">
+            <summary>
+            Exits lock mode and returns parent logger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tool.Logging.NullLogger">
+            <summary>
+            Null logger implement which won't output any information
+            </summary>
+        </member>
+        <member name="P:Tool.Logging.NullLogger.Instance">
+            <summary>
+            Null logger instance
+            </summary>
+        </member>
+        <member name="T:System.ChildOptionsAttribute">
+            <summary>
+            Marks current type as child of <see cref="P:System.ChildOptionsAttribute.Parent"/>. <see cref="P:System.ChildOptionsAttribute.Parent"/> type must have instance property 'ChildOptions' with return type 'IDictionary&lt;Type, object&gt;'
+            </summary>
+        </member>
+        <member name="P:System.ChildOptionsAttribute.Parent">
+            <summary>
+            Parent options type
+            </summary>
+        </member>
+        <member name="P:System.ChildOptionsAttribute.Prefix">
+            <summary>
+            Option prefix (can be empty)
+            </summary>
+        </member>
+        <member name="M:System.ChildOptionsAttribute.#ctor(System.Type)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="parent">Parent options type</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:System.OptionAttribute">
+            <summary>
+            Represents a command line option. The property which <see cref="T:System.OptionAttribute"/> is applied to must be an instance property and one of the following types: <see cref="T:System.Boolean"/>, <see cref="T:System.Char"/>, <see cref="T:System.SByte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Int16"/>, <see cref="T:System.UInt16"/>, <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Int64"/>, <see cref="T:System.UInt64"/>, <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Decimal"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/> or array of them.
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.Name">
+            <summary>
+            Option name
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.IsDefault">
+            <summary>
+            Whether it is a default option
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.IsRequired">
+            <summary>
+            Whether it is a required option
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.Separator">
+            <summary>
+            Array separator, which is used to split value when option type is array
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.DefaultValue">
+            <summary>
+            By default, when <see cref="P:System.OptionAttribute.IsRequired"/> is <see langword="true"/>, <see cref="P:System.OptionAttribute.DefaultValue"/> must be <see langword="null"/>
+            </summary>
+        </member>
+        <member name="P:System.OptionAttribute.Description">
+            <summary>
+            Option description, which is used to describe this option
+            </summary>
+        </member>
+        <member name="M:System.OptionAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:System.OptionAttribute.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Option name</param>
+        </member>
+    </members>
+</doc>
