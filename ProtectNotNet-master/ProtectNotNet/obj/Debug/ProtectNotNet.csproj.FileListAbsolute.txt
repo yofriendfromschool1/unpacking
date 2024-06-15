@@ -1,0 +1,9 @@
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\bin\Debug\ProtectNotNet.exe.config
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\bin\Debug\ProtectNotNet.exe
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\bin\Debug\ProtectNotNet.pdb
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\bin\Debug\dnlib.dll
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\obj\Debug\ProtectNotNet.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\obj\Debug\ProtectNotNet.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\obj\Debug\ProtectN.6439D00D.Up2Date
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\obj\Debug\ProtectNotNet.exe
+C:\Users\diazc\Downloads\ProtectNotNet-master\ProtectNotNet-master\ProtectNotNet\obj\Debug\ProtectNotNet.pdb

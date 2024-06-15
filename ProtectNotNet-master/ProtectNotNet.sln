@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtectNotNet", "ProtectNotNet\ProtectNotNet.csproj", "{A10199C0-DDD1-4D94-84A0-F467EA69A71D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A10199C0-DDD1-4D94-84A0-F467EA69A71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10199C0-DDD1-4D94-84A0-F467EA69A71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10199C0-DDD1-4D94-84A0-F467EA69A71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10199C0-DDD1-4D94-84A0-F467EA69A71D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8842CF6-BB90-4B15-BC5F-99DC2C3C4E91}
+	EndGlobalSection
+EndGlobal
