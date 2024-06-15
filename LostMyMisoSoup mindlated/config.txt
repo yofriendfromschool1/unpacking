@@ -1,0 +1,40 @@
+// Unsupported Protections:
+// ProxyMethods 		- MindLated's ProxyMethod isn't finished.
+// CFlow			- Use "https://github.com/miso-xyz/CCFlow/" to fix it, manual work will however be required after.
+// Renamer			- Can be detected, cannot be recovered.
+// ResourceEncryption		- MindLated has no code for it, it only has a checkbox which doesn't do anything.
+
+[General]
+ForceDefault		= 0
+PresetFile		= preset_file.txt
+PresetDevMode		= 0
+ExportRNGSeeds		= 0
+[Antis]
+AntiTamper		= 1
+AntiDump		= 1
+AntiDebug		= 1
+AntiDe4Dot		= 1
+[CFlow]
+Watermark		= 1
+JumpCFlow		= 1
+[Proxy]
+ProxyConstants		= 1
+ProxyStrings		= 1
+[Math]
+IntConfusion		= 1
+Arithmectic		= 1
+[Encryption]
+StringsEncryption	= 1
+OnlineStringDecryption	= 1
+ResourceEncryption	= 1
+[Misc]
+StackUnfConfusion	= 1
+Calli			= 1
+InvalidMD		= 1
+Local2Field		= 1
+[Cleanup]
+InvalidCalls		= 1
+UselessJumps		= 1
+UselessNOPs		= 1
+UnusedLocals		= 1
+UnusedVariables		= 1

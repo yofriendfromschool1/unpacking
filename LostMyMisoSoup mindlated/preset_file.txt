@@ -1,0 +1,42 @@
+// this file can be edited if the target application uses a modified version of MindLated
+
+[AntiTamper]
+AntiTamper_Throw	= System,BadImageFormatException
+[AntiDump]
+AntiDump_Marshal	= System.Runtime.InteropServices,Marshal,GetHINSTANCE
+[AntiDebug]
+AntiDebug_OSPlatform	= System,OperatingSystem,get_Platform
+AntiDebug_EnvExit	= System,Environment,Exit
+AntiDebug_EnvVar	= System,Environment,GetEnvironmentVariable
+AntiDebug_EnvOSVer	= System,Environment,get_OSVersion
+AntiDebug_DebugHooked	= System.Diagnostics,Debugger,get_IsAttached
+AntiDebug_DebugLog	= System.Diagnostics,Debugger,IsLogging
+[JumpCFlow]
+JCF_Watermark		= MindLated.jpg
+[IntConfusion & Arithmatic]
+IntConf_Default		= 1.5707963267949
+Math_Class		= System,Math
+Math_Truncate		= System,Math,Truncate
+Math_Abs		= System,Math,Abs
+Math_Cos		= System,Math,Cos
+Math_Sin		= System,Math,Sin
+Math_Log		= System,Math,Log
+Math_Log10		= System,Math,Log10
+Math_Floor		= System,Math,Floor
+Math_Round		= System,Math,Round
+Math_Tan		= System,Math,Tan
+Math_Tanh		= System,Math,Tanh
+Math_Sqrt		= System,Math,Sqrt
+Math_Ceiling		= System,Math,Ceiling
+[Proxy]
+Proxy_CommonName	= ProxyMeth
+[Strings]
+EncString_ResourceName	= MindLated.zero
+EncString_PasswordHash	= p7K95451qB88sZ7J
+EncString_KeyAlgorithm	= System.Security.Cryptography,Rfc2898DeriveBytes
+EncString_AESAlgorithm	= System.Security.Cryptography,RijndaelManaged
+EncString_SymmetricAlg 	= System.Security.Cryptography,SymmetricAlgorithm
+// Start of Base64 (you will have to replace the padding by '#')
+EncString_Salt		= MkdNMjNqMzAxdDYwWjk2VA##
+EncString_VI		= SXpUZGhHNlM4dXdnMTQxUw##
+// End of Base64
