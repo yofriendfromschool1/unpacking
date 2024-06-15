@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "e4Jwf7Jv0QDwzkiKRuyBQnmUNAlTZWaW5Gkh7uPmwIDXTFjGhpo4/OpztG1PoT2he18Y7aaRfN1IaB0Y2ttSig==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\diazc\\Downloads\\simple-deobfuscator-master\\simple-deobfuscator-master\\SimpleDeobfuscator\\SimpleDeobfuscator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\diazc\\.nuget\\packages\\mono.cecil\\0.11.3\\mono.cecil.0.11.3.nupkg.sha512"
+  ],
+  "logs": []
+}

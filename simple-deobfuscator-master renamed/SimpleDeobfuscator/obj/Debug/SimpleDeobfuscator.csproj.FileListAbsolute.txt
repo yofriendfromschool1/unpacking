@@ -1,0 +1,16 @@
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\SimpleDeobfuscator.exe.config
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\SimpleDeobfuscator.exe
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\SimpleDeobfuscator.pdb
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Mdb.pdb
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Pdb.pdb
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Rocks.dll
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.Rocks.pdb
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.dll
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\bin\Debug\Mono.Cecil.pdb
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\obj\Debug\SimpleDeobfuscator.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\obj\Debug\SimpleDeobfuscator.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\obj\Debug\SimpleDe.95242200.Up2Date
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\obj\Debug\SimpleDeobfuscator.exe
+C:\Users\diazc\Downloads\simple-deobfuscator-master\simple-deobfuscator-master\SimpleDeobfuscator\obj\Debug\SimpleDeobfuscator.pdb
