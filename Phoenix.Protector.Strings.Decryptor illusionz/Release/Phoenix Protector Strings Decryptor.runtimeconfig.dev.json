@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\illuZion\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\illuZion\\.nuget\\packages"
+    ]
+  }
+}
