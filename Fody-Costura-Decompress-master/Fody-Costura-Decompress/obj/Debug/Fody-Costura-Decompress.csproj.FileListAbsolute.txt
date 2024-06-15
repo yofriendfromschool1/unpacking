@@ -1,0 +1,13 @@
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\bin\Debug\Fody-Costura-Decompress.exe.config
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\bin\Debug\Fody-Costura-Decompress.exe
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\bin\Debug\Fody-Costura-Decompress.pdb
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\bin\Debug\JetBrains.Annotations.dll
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\bin\Debug\JetBrains.Annotations.xml
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Costura-Decompress.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody_Costura_Decompress.MainForm.resources
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody_Costura_Decompress.Properties.Resources.resources
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Costura-Decompress.csproj.GenerateResource.cache
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Costura-Decompress.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Cos.DE414DBD.Up2Date
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Costura-Decompress.exe
+C:\Users\diazc\Downloads\Fody-Costura-Decompress-master\Fody-Costura-Decompress-master\Fody-Costura-Decompress\obj\Debug\Fody-Costura-Decompress.pdb
