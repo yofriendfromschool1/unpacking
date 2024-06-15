@@ -1,0 +1,10 @@
+[TextEncoding]
+Encoding_GetUTF8		= System.Text,Encoding,get_UTF8
+Encoding_GetAscii		= System.Text,Encoding,get_ASCII
+Encoding_GetBytes		= System.Text,Encoding,GetBytes
+[Encryption]
+SymmetricAlgorithm_Decryptor	= System.Security.Cryptography,SymmetricAlgorithm,CreateDecryptor
+HMACSHA256_HashGen		= System.Security.Cryptography,HMACSHA256
+SHA256_CryptoService		= System.Security.Cryptography,SHA256CryptoServiceProvider
+[ILDasm]
+SupressIldasmAttribute		= System.Runtime.CompilerServices,SuppressIldasmAttribute

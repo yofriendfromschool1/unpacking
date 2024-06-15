@@ -1,0 +1,21 @@
+[Rendering]
+// Can get laggy if turned on
+DetailedLog		= 0
+// Basic Rendering, Recommended if a large file has to be processed
+MinimalLayout		= 0
+[Misc]
+UseCustomFileBrowser	= 1
+[Protections]
+// Renaming not supported since names are randomised
+// You might need to do some small manual work to have the protected application running after cleaning CFlow.
+Base64Strings		= 1
+Packed_RemovableDrive	= 1
+Packed_ComputerHWID	= 1
+Packed_LicenseFile	= 1
+AntiDe4Dots		= 1
+FakeAttribs		= 1
+JunkMethods		= 1
+ILDasm			= 1
+CFlow			= 1
+IntConfusion		= 1
+Callis			= 1
