@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="Runtime Code Contract Checking">
+
+    <rule name="Contracts: Disable pruning object invariant methods">
+      <pruning enabled="false" />
+      <apply-to-method specifiers="non-static">
+        <having-attribute named="System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      </apply-to-method>
+    </rule>
+
+    <rule name="Contracts: Disable pruning contract classes">
+      <pruning enabled="false" />
+      <apply-to-type>
+        <having-attribute named="System.Diagnostics.Contracts.ContractClassForAttribute" />
+      </apply-to-type>
+    </rule>
+
+  </rules>
+</yano>

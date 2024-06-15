@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Yano.Decoder</name>
+    </assembly>
+    <members>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.Error">
+            <summary>
+              Looks up a localized string similar to ERROR: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.InvalidMapFile">
+            <summary>
+              Looks up a localized string similar to Invalid map file provided: '{0}'.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.InvalidMapFileContent">
+            <summary>
+              Looks up a localized string similar to The following map file value is invalid: '{0}'.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.MapNotSpecified">
+            <summary>
+              Looks up a localized string similar to Decoding a stack trace requires the map resulted from obfuscation.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.MethodNotFound">
+            <summary>
+              Looks up a localized string similar to 		Cannot find any method for: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.NoSymbolsFound">
+            <summary>
+              Looks up a localized string similar to Cannot find any symbol..
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.PossibleMethod">
+            <summary>
+              Looks up a localized string similar to 		Possible method: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.PossibleSymbol">
+            <summary>
+              Looks up a localized string similar to Possible symbol: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.PossibleType">
+            <summary>
+              Looks up a localized string similar to 	Possible type: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.StackTraceLine">
+            <summary>
+              Looks up a localized string similar to Stack trace line: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.StackTraceNotDecoded">
+            <summary>
+              Looks up a localized string similar to Cannot decode any stack trace line. Please check whether the provided input map is the correct one..
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.TypeNotFound">
+            <summary>
+              Looks up a localized string similar to 	Cannot find any type for: {0}.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.Resources.DecoderStrings.UsageDescription">
+            <summary>
+              Looks up a localized string similar to You can specify a symbol to search for or, optionally, a stack trace file. If no symbol or stack trace file is specified, standard console input is taken as stack trace source..
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.MapNames">
+            <summary>
+            Helper class that declares XML names used in map files and name formatting methods.
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Yano">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "yano".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Map">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "map".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Name">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "name".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.NewName">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "new-name".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Assembly">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "assembly".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Module">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "module".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Size">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "size".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.NewSize">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "new-size".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Resource">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "resource".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Type">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "type".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Members">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "members".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Field">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "field".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Method">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "method".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Event">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "event".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Property">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "property".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.File">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "file".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.EncryptedInto">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "encrypted-into".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Pruned">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "pruned".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Parameters">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "parameters".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.Specifiers">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "specifiers".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.GenericParameters">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "generic-parameters".
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.MapNames.GenericParameter">
+            <summary>
+            The <see cref="T:System.Xml.Linq.XName" /> for "generic-parameter".
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetSignature(System.Xml.Linq.XElement,System.Boolean)">
+            <summary>
+            Returns a formatted signature for the specified <paramref name="element" />.
+            </summary>
+            <param name="element">Specifies the element to return the signature for.</param>
+            <param name="fullName">Specifies whether to return a full signature.</param>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetTypeName(System.Xml.Linq.XElement,System.Boolean)">
+            <summary>
+            Returns a formatted type name for the <paramref name="type" />.
+            </summary>
+            <param name="type">Specifies the type to return the type name for.</param>
+            <param name="fullName">Specifies whether to return a full type name.</param>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetFieldSignature(System.Xml.Linq.XElement)">
+            <summary>
+            Returns a formatted signature for the <param name="field" />.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetMethodSignature(System.Xml.Linq.XElement)">
+            <summary>
+            Returns a formatted signature for the <param name="method" />.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetPropertySignature(System.Xml.Linq.XElement)">
+            <summary>
+            Returns a formatted signature for the <param name="property" />.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.MapNames.GetEventSignature(System.Xml.Linq.XElement)">
+            <summary>
+            Returns a formatted signature for the <param name="event" />.
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.ParsedParameterType">
+            <summary>
+            Represents a parsed stack frame parameter type.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.ParsedParameterType.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of parsed parameter type.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.ParsedParameterType.Equals(Yano.Decoder.ParsedParameterType)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.ParsedParameterType.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:Yano.Decoder.ParsedParameterType" />.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedParameterType.FullName">
+            <summary>
+            Parameter type full name.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedParameterType.Name">
+            <summary>
+            Parameter type name.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedParameterType.Sufix">
+            <summary>
+            Parameter type name sufix (such as array and/or pointer type specifiers).
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.ParsedStackFrame">
+            <summary>
+            Represents a parsed stack frame.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.ParsedStackFrame.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents the current <see cref="T:Yano.Decoder.ParsedStackFrame" />.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedStackFrame.FullTypeName">
+            <summary>
+            Parsed full type name.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedStackFrame.MethodName">
+            <summary>
+            Parsed method name.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedStackFrame.GenericParameters">
+            <summary>
+            Parsed generic method parameters.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.ParsedStackFrame.ParameterTypes">
+            <summary>
+            Parsed method parameter types.
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.StringParser">
+            <summary>
+            A string parser for decoding functionality.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.StringParser.ParseStackFrame(System.String)">
+            <summary>
+            Parses the passed <paramref name="line" /> into stack frame elements.
+            </summary>
+            <param name="line">A line of stack frame.</param>
+            <returns>An instance of <see cref="T:Yano.Decoder.ParsedStackFrame" />.</returns>
+        </member>
+        <member name="T:Yano.Decoder.SymbolSearcher">
+            <summary>
+            Helper class used to search for symbols.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.SymbolSearcher.#ctor(System.Xml.Linq.XDocument)">
+            <summary>
+            Initializes a new instance of <see cref="T:Yano.Decoder.SymbolSearcher" /> class with the specified XML map document.
+            </summary>
+            <param name="map">XML map document to use during searching.</param>
+        </member>
+        <member name="M:Yano.Decoder.SymbolSearcher.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Yano.Decoder.SymbolSearcher" /> class with the specified map file.
+            </summary>
+            <param name="mapFilePath">The path to the map file.</param>
+        </member>
+        <member name="M:Yano.Decoder.SymbolSearcher.Search(System.String)">
+            <summary>
+            Searches a symbol <paramref name="symbol" /> in the map.
+            </summary>
+            <param name="symbol">The symbol to search for.</param>
+            <returns>An enumeration of <see cref="T:System.Xml.Linq.XElement" /> that correspond to found search symbols.</returns>
+        </member>
+        <member name="T:Yano.Decoder.FramePossibleType">
+            <summary>
+            Represents a possible frame type.
+            </summary>
+        </member>
+        <member name="F:Yano.Decoder.FramePossibleType.PossibleMethods">
+            <summary>
+            Possible frame methods.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.FramePossibleType.Type">
+            <summary>
+            Possible frame type.
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.DecodedStackFrame">
+            <summary>
+            Represents a decoded stack frame.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.DecodedStackFrame.TraceLine">
+            <summary>
+            The original stack trace line, on which this instance is based.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.DecodedStackFrame.StackFrame">
+            <summary>
+            Parsed stack frame.
+            </summary>
+        </member>
+        <member name="P:Yano.Decoder.DecodedStackFrame.PossibleTypes">
+            <summary>
+            Possible frame types.
+            </summary>
+        </member>
+        <member name="T:Yano.Decoder.TraceDecoder">
+            <summary>
+            Helper class used to decode stack traces.
+            </summary>
+        </member>
+        <member name="M:Yano.Decoder.TraceDecoder.#ctor(System.Xml.Linq.XDocument)">
+            <summary>
+            Initializes a new instance of <see cref="T:Yano.Decoder.TraceDecoder" /> class with the specified XML map document.
+            </summary>
+            <param name="map">XML map document to use during decoding.</param>
+        </member>
+        <member name="M:Yano.Decoder.TraceDecoder.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Yano.Decoder.TraceDecoder" /> class with the specified map file.
+            </summary>
+            <param name="mapFilePath">The path to the map file.</param>
+        </member>
+        <member name="M:Yano.Decoder.TraceDecoder.DecodeStackTrace(System.IO.TextReader)">
+            <summary>
+            Returns an <see cref="T:System.Collections.Generic.IEnumerable`1" /> that represent the stack frames
+            decoded by reading the obfuscated stack frames from <paramref name="reader" />.
+            </summary>
+            <param name="reader">A <see cref="T:System.IO.TextReader" /> that returns obfuscated stack frimes, one per line.</param>
+            <returns>An enumeration of decoded stack frames.</returns>
+        </member>
+    </members>
+</doc>

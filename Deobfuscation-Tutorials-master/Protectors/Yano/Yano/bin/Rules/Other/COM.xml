@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="COM">
+
+    <rule name="COM: Disable pruning COM registration functions">
+      <pruning enabled="false" />
+      <apply-to-method specifiers="static">
+        <having-attribute named="System.Runtime.InteropServices.ComRegisterFunctionAttribute" />
+      </apply-to-method>
+      <apply-to-method specifiers="static">
+        <having-attribute named="System.Runtime.InteropServices.ComUnregisterFunctionAttribute" />
+      </apply-to-method>
+    </rule>
+
+  </rules>
+</yano>

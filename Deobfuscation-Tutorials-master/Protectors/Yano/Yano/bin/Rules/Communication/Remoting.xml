@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="Remoting">
+
+    <rule name=".NET Remoting: Perform CLS-compliant renaming for classes deriving from MarshalByRefObject">
+      <!-- Note: Disable renaming and pruning for these classes if you don't obfuscate both communicating sides. -->
+      <renaming cls-compliant="true" />
+      <apply-to-type specifiers="class">
+        <having-type named="System.MarshalByRefObject" />
+      </apply-to-type>
+    </rule>
+
+  </rules>
+</yano>

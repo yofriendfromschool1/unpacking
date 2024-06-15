@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="Configuration">
+
+    <rule name="Configuration: Disable pruning and renaming Configuration classes">
+      <pruning enabled="false" />
+      <renaming enabled="false" />
+      <apply-to-type members="false">
+        <having-type named="System.Configuration.ConfigurationElement" />
+      </apply-to-type>
+      <apply-to-type members="false">
+        <having-type named="System.Configuration.IConfigurationSectionHandler" />
+      </apply-to-type>
+    </rule>
+
+  </rules>
+</yano>

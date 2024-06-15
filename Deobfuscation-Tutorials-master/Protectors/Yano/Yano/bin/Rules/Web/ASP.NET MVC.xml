@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="ASP.NET MVC">
+
+    <rule name="ASP.NET MVC: Disable renaming and pruning handlers and modules, the application class, controllers, actions and model classes and properties on anonymous types">
+      <renaming enabled="false" />
+      <pruning enabled="false" />
+      <apply-to-type specifiers="public non-nested non-static class">
+        <having-type named="System.Web.HttpApplication" />
+      </apply-to-type>
+      <apply-to-method specifiers="public non-static" container="true">
+        <having-type named="System.Web.Mvc.ActionResult" />
+        <defined-in-type specifiers="public">
+          <having-type named="System.Web.Mvc.ControllerBase" />
+        </defined-in-type>
+      </apply-to-method>
+      <apply-to-type specifiers="public class" named="*.Models.*">
+        <defined-in-assembly>
+          <having-assembly-reference named="System.Web.Mvc" />
+        </defined-in-assembly>
+      </apply-to-type>
+      <apply-to-property specifiers="public readonly">
+        <defined-in-type specifiers="anonymous">
+          <defined-in-assembly>
+            <having-assembly-reference named="System.Web.Mvc" />
+          </defined-in-assembly>
+        </defined-in-type>
+      </apply-to-property>
+    </rule>
+
+  </rules>
+</yano>

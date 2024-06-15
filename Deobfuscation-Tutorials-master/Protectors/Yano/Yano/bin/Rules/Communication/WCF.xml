@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="WCF">
+    
+    <rule name="WCF: Disable renaming and pruning for WCF contract related elements">
+      <renaming enabled="false" />
+      <pruning enabled="false" />
+      <apply-to-method container="true">
+        <having-attribute named="System.ServiceModel.OperationContractAttribute" exact="true" />
+      </apply-to-method>
+      <apply-to-type members="false">
+        <having-attribute named="System.Runtime.Serialization.CollectionDataContractAttribute" exact="true" />
+      </apply-to-type>
+      <apply-to-member container="true">
+        <having-attribute named="System.Runtime.Serialization.DataMemberAttribute" exact="true" />
+      </apply-to-member>
+      <apply-to-field container="true">
+        <having-attribute named="System.Runtime.Serialization.EnumMemberAttribute" exact="true" />
+      </apply-to-field>
+    </rule>
+
+    <rule name="WCF: Disable renaming behavior and extension classes">
+      <renaming enabled="false" />
+      <apply-to-type specifiers="class">
+        <having-type specifiers="interface" named="System.ServiceModel.Description.I*" />
+      </apply-to-type>
+    </rule>
+
+    <rule name="WCF: Disable pruning serialization events">
+      <pruning enabled="false" />
+      <apply-to-method>
+        <having-attribute named="System.Runtime.Serialization.OnSerializingAttribute" exact="true" />
+      </apply-to-method>
+      <apply-to-method>
+        <having-attribute named="System.Runtime.Serialization.OnSerializedAttribute" exact="true" />
+      </apply-to-method>
+      <apply-to-method>
+        <having-attribute named="System.Runtime.Serialization.OnDeserializingAttribute" exact="true" />
+      </apply-to-method>
+      <apply-to-method>
+        <having-attribute named="System.Runtime.Serialization.OnDeserializedAttribute " exact="true" />
+      </apply-to-method>
+    </rule>
+
+  </rules>
+</yano>

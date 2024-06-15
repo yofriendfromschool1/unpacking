@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="WPF">
+    
+    <rule name="WPF: Disable renaming and pruning ViewModel classes">
+      <renaming enabled="false" />
+      <pruning enabled="false" />
+      <apply-to-property specifiers="public">
+        <having-type named="*.ViewModels.*">
+          <defined-in-assembly>
+            <having-assembly-reference named="WindowsBase" />
+          </defined-in-assembly>
+        </having-type>
+      </apply-to-property>
+    </rule>
+
+  </rules>
+</yano>

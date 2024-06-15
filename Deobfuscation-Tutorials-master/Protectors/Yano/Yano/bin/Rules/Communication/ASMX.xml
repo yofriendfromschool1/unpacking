@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<yano xmlns="urn:yano" version="1.0">
+  <rules description="ASMX">
+    
+    <rule name="ASP.NET WebServices: Disable renaming and pruning for ASMX related elements">
+      <renaming enabled="false" />
+      <pruning enabled="false" />
+      <apply-to-method container="true">
+        <having-attribute named="System.Web.Services.WebMethodAttribute" exact="true" />
+      </apply-to-method>
+    </rule>
+
+  </rules>
+</yano>

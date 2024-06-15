@@ -1,0 +1,1742 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:yano"
+           xmlns="urn:yano"
+           xmlns:yano="urn:yano"
+           xml:lang="EN" version="1.0"
+           elementFormDefault="qualified">
+
+  <!-- Top level struture -->
+
+  <xs:element name="yano">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="project" />
+        <xs:element ref="rules" />
+      </xs:choice>
+      <xs:attribute name="version" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>Specifies Yano project or rules version number.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="project">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="input" type="input-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains input settings.</xs:documentation>
+          </xs:annotation>
+          <xs:unique name="filePathMustBeUnique">
+            <xs:selector xpath="yano:file" />
+            <xs:field xpath="@path" />
+          </xs:unique>
+          <xs:unique name="libPathMustBeUnique">
+            <xs:selector xpath="yano:lib" />
+            <xs:field xpath="@path" />
+          </xs:unique>
+        </xs:element>
+        <xs:element name="output" type="project-output-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project output settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="renaming" type="project-renaming-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project renaming settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="control-flow" type="control-flow-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project control flow obfuscation settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="string-encryption" type="project-string-encryption-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project string encryption settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="resource-encryption" type="project-resource-encryption-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project resource encryption settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="anti-tampering" type="project-anti-tampering-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project anti-tampering settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="pruning" type="project-pruning-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project pruning settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="signing" type="signing-type" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Contains project signing settings.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="rules" minOccurs="0" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Rules -->
+
+  <xs:element name="rules">
+    <xs:annotation>
+      <xs:documentation>Contains a list of custom rule definitions.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="rule" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="description" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Custom rules set description.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+    <xs:unique name="ruleNameMustBeUnique">
+      <xs:selector xpath="yano:rule"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="rule">
+    <xs:annotation>
+      <xs:documentation>Custom rule definition.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="output" type="rule-output-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule output settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="renaming" type="rule-renaming-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule renaming settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="control-flow" type="control-flow-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule string encryption settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="string-encryption" type="rule-string-encryption-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule string encryption settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="resource-encryption" type="rule-resource-encryption-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule resource encryption settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="anti-tampering" type="rule-anti-tampering-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule anti-tampering settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="pruning" type="rule-pruning-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule pruning settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="signing" type="signing-type">
+            <xs:annotation>
+              <xs:documentation>Contains rule signing settings.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-assembly" type="rule-assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching assemblies.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-module" type="rule-module-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching modules.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-type" type="rule-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching types.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-member" type="rule-member-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching type members.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-field" type="rule-field-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching fields.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-method" type="rule-method-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching methods.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-property" type="rule-property-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching properties.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-event" type="rule-event-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching events.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="apply-to-resource" type="rule-resource-matcher">
+            <xs:annotation>
+              <xs:documentation>Apply rule settings to matching resources.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Custom rule name.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Complex types -->
+
+  <xs:complexType name="input-type">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="file">
+        <xs:annotation>
+          <xs:documentation>Specifies input file path.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="path" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:documentation>Specifies a relative path to an input file or a search pattern.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="lib">
+        <xs:annotation>
+          <xs:documentation>Specifies an additional reference library path.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="path" type="xs:string" use="required">
+            <xs:annotation>
+              <xs:documentation>Specifies a relative path to an additional reference library path or a search pattern.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="path" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies input files base folder.
+          Output files will be writen in a similar folder hierarchy, but relative to the output folder.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="base-output-type">
+    <xs:attribute name="debug" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether to keep and update debug information.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-output-type">
+    <xs:complexContent>
+      <xs:extension base="base-output-type">
+        <xs:attribute name="verify" type="verification-scope-type" use="optional" default="all">
+          <xs:annotation>
+            <xs:documentation>Specifies verification scope.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="project-output-type">
+    <xs:complexContent>
+      <xs:extension base="base-output-type">
+        <xs:attribute name="path" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              Specifies files output folder (created if not found).
+              If not specified, input files are overwritten.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="map" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Resulting mapping file (overwritten if exists).</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="documentation" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to keep and update standard XML documentation.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stamp" type="xs:boolean" use="optional" default="true">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to stamp assemblies with YanoAttribute.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="verify" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to perform a verification after writing out assemblies.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="base-renaming-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>Specifies whether symbol renaming is enabled.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scope" type="renaming-scope-type" use="optional" default="assembly">
+      <xs:annotation>
+        <xs:documentation>Specifies the scope of the renaming.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="cls-compliant" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether to perform a CLS-compliant renaming.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-renaming-type">
+    <xs:complexContent>
+      <xs:extension base="base-renaming-type">
+        <xs:attribute name="unique" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether type members new names should be unique (ignoring case) in containing type hierarchy.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="project-renaming-type">
+    <xs:complexContent>
+      <xs:extension base="base-renaming-type">
+        <xs:attribute name="noncharacters" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to use noncharacter Unicode code points for new names.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="strip-namespaces" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to strip namespaces for non-renamed types. By default, this is false.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="include-serializable" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to rename serializable types and fields. By default, this is false.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="control-flow-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>Specifies whether control flow obfuscation is enabled.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="level" type="control-flow-level-type" use="optional" default="normal">
+      <xs:annotation>
+        <xs:documentation>Specifies the level of control flow obfuscation to apply.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="project-string-encryption-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether string literal encryption is enabled. It is disabled by default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-string-encryption-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies whether string literal encryption is enabled.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-resource-encryption-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies whether resource encryption is enabled.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="project-resource-encryption-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether resource encryption is enabled. It is disabled by default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-anti-tampering-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies whether to perform tamper-proof modifications.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="project-anti-tampering-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether to perform tamper-proof modifications. It is disabled by default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-pruning-type">
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>Specifies whether metadata pruning is enabled.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scope" type="pruning-scope-type" use="optional" default="assembly">
+      <xs:annotation>
+        <xs:documentation>Specifies the scope of pruning.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="project-pruning-type">
+    <xs:complexContent>
+      <xs:extension base="rule-pruning-type">
+        <xs:attribute name="constants" type="xs:boolean" use="optional" default="true">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to prune constants' metadata.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="properties" type="xs:boolean" use="optional" default="true">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to prune properties' metadata.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="events" type="xs:boolean" use="optional" default="true">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to prune events' metadata.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="analysis-enabled" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Specifies whether to perform deep analysis to prune other unused elements.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="signing-type">
+    <xs:attribute name="strongname-key-file" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies a strong name key file.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="strongname-key-password" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies a strong name key file password. Not recommended and can be entered at runtime.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="strongname-key-container" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies a strong name key container.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="authcode-key-file" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies an authenticode key file.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="authcode-key-password" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies an authenticode key file password. Not recommended and can be entered at runtime.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="authcode-timestamp-url" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies an authenticode timestamp service URL.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Matchers -->
+
+  <xs:attributeGroup name="rule-matcher-attributes">
+    <xs:attribute name="members" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>Specifies whether the rule is also applied to all members of the matching element. By default, this is true.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="container" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies whether the rule is also applied to element's container.
+          This is only applicable to renaming and pruning exclusions, allowing, for example, to exclude a method and it's containing type.
+          By default, this is false.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+  <xs:complexType name="name-matcher">
+    <xs:attribute name="named" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Target element name. Use full names only for types. Wildcards are allowed (* and ?).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="regex" type="xs:boolean" use="optional" default="false">
+      <xs:annotation>
+        <xs:documentation>Specifies whether the value of the named attribute is a regular expression.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="rule-assembly-matcher">
+    <xs:complexContent>
+      <xs:extension base="assembly-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="assembly-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches assemblies annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-assembly-reference" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches assemblies that reference the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-module-reference" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches assemblies that reference the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-module-matcher">
+    <xs:complexContent>
+      <xs:extension base="module-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="module-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches modules annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-assembly-reference" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches modules that reference the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-module-reference" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches modules that reference the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-type-matcher">
+    <xs:complexContent>
+      <xs:extension base="exact-type-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="type-matcher">
+    <xs:complexContent>
+      <xs:extension base="exact-type-matcher">
+        <xs:attribute name="exact" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>Matches the type exactly, i.e. doesn't match inheriting types. By default, this is false.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="exact-type-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches types annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches types that derive from the specified base type or implement the specified interface.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches types defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches types defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches nested types defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional type filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:restriction base="specifier-type">
+                  <xs:enumeration value="class">
+                    <xs:annotation>
+                      <xs:documentation>Match types that are classes, i.e. not interfaces, structures or delegates.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-class">
+                    <xs:annotation>
+                      <xs:documentation>Match non-class types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="interface">
+                    <xs:annotation>
+                      <xs:documentation>Match types that are interfaces.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-interface">
+                    <xs:annotation>
+                      <xs:documentation>Match types that aren't interfaces.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="nested">
+                    <xs:annotation>
+                      <xs:documentation>Match nested types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-nested">
+                    <xs:annotation>
+                      <xs:documentation>Match non-nested types or type members excluding nested types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="value">
+                    <xs:annotation>
+                      <xs:documentation>Match value types (i.e. extending System.ValueType or System.Enum).</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-value">
+                    <xs:annotation>
+                      <xs:documentation>Match non-value types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="struct">
+                    <xs:annotation>
+                      <xs:documentation>Match struct types (i.e. non-primitives, extending System.ValueType).</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-struct">
+                    <xs:annotation>
+                      <xs:documentation>Match non-struct types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="integral">
+                    <xs:annotation>
+                      <xs:documentation>Match one of the standard integral types (including System.Char).</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-integral">
+                    <xs:annotation>
+                      <xs:documentation>Match non-integral types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="floating">
+                    <xs:annotation>
+                      <xs:documentation>Match System.Single (float in C#) or System.Double types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-floating">
+                    <xs:annotation>
+                      <xs:documentation>Match non-floating types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="enum">
+                    <xs:annotation>
+                      <xs:documentation>Match enumeration types (i.e. extending System.Enum).</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-enum">
+                    <xs:annotation>
+                      <xs:documentation>Match non-enumeration types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="delegate">
+                    <xs:annotation>
+                      <xs:documentation>Match delegate types (i.e. extending System.MultiCastDelegate).</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-delegate">
+                    <xs:annotation>
+                      <xs:documentation>Match non-delegate types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="com">
+                    <xs:annotation>
+                      <xs:documentation>Match types imported from COM type library.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-com">
+                    <xs:annotation>
+                      <xs:documentation>Match non-COM types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="serializable">
+                    <xs:annotation>
+                      <xs:documentation>Match serializable types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-serializable">
+                    <xs:annotation>
+                      <xs:documentation>Match non-serializable types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="anonymous">
+                    <xs:annotation>
+                      <xs:documentation>Match anonymous types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-anonymous">
+                    <xs:annotation>
+                      <xs:documentation>Match non-anonymous types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="static">
+                    <xs:annotation>
+                      <xs:documentation>Match static types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-static">
+                    <xs:annotation>
+                      <xs:documentation>Match non-static types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="abstract">
+                    <xs:annotation>
+                      <xs:documentation>Match abstract types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-abstract">
+                    <xs:annotation>
+                      <xs:documentation>Match non-abstract types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="sealed">
+                    <xs:annotation>
+                      <xs:documentation>Match sealed types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-sealed">
+                    <xs:annotation>
+                      <xs:documentation>Match non-sealed types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="generic">
+                    <xs:annotation>
+                      <xs:documentation>Match generic types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-generic">
+                    <xs:annotation>
+                      <xs:documentation>Match non-generic types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="public">
+                    <xs:annotation>
+                      <xs:documentation>Match public types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-public">
+                    <xs:annotation>
+                      <xs:documentation>Match non-public types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="protected">
+                    <xs:annotation>
+                      <xs:documentation>Match nested types accessible only within its own type and any subtypes.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-protected">
+                    <xs:annotation>
+                      <xs:documentation>Match non-protected types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="internal">
+                    <xs:annotation>
+                      <xs:documentation>Match types not accessible outside the assembly they are defined in.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-internal">
+                    <xs:annotation>
+                      <xs:documentation>Match non-internal types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="protectedinternal">
+                    <xs:annotation>
+                      <xs:documentation>Match nested types accessible only within the union of its family (its own type and any subtypes) and assembly.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-protectedinternal">
+                    <xs:annotation>
+                      <xs:documentation>Match non protected internal types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="protectedandinternal">
+                    <xs:annotation>
+                      <xs:documentation>Match nested types accessible only within the intersection of its family (its own type and any subtypes) and assembly.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-protectedandinternal">
+                    <xs:annotation>
+                      <xs:documentation>Match non protected and internal types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="private">
+                    <xs:annotation>
+                      <xs:documentation>Match private nested types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                  <xs:enumeration value="non-private">
+                    <xs:annotation>
+                      <xs:documentation>Match non-private types.</xs:documentation>
+                    </xs:annotation>
+                  </xs:enumeration>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-member-matcher">
+    <xs:complexContent>
+      <xs:extension base="member-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="member-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches type members annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches type members defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches type members defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches type members defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional type member filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:union memberTypes="member-visibility-specifier-type">
+                  <xs:simpleType>
+                    <xs:restriction base="specifier-type">
+                      <xs:enumeration value="nested">
+                        <xs:annotation>
+                          <xs:documentation>Match nested types.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-nested">
+                        <xs:annotation>
+                          <xs:documentation>Match all type members excluding nested types.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:union>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-field-matcher">
+    <xs:complexContent>
+      <xs:extension base="field-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="field-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches fields annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches fields fields having the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches fields defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches fields defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches fields defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional field filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:union memberTypes="member-visibility-specifier-type">
+                  <xs:simpleType>
+                    <xs:restriction base="specifier-type">
+                      <xs:enumeration value="serializable">
+                        <xs:annotation>
+                          <xs:documentation>Match serializable fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-serializable">
+                        <xs:annotation>
+                          <xs:documentation>Match non-serializable fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="static">
+                        <xs:annotation>
+                          <xs:documentation>Match static fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-static">
+                        <xs:annotation>
+                          <xs:documentation>Match non-static fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="const">
+                        <xs:annotation>
+                          <xs:documentation>Match constant fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-const">
+                        <xs:annotation>
+                          <xs:documentation>Match non-constant fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="readonly">
+                        <xs:annotation>
+                          <xs:documentation>Match read-only fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-readonly">
+                        <xs:annotation>
+                          <xs:documentation>Match non-read-only fields.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:union>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-method-matcher">
+    <xs:complexContent>
+      <xs:extension base="method-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="method-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods returning the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-signature" type="signature-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches methods having the specified signature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional method filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:union memberTypes="member-visibility-specifier-type">
+                  <xs:simpleType>
+                    <xs:restriction base="specifier-type">
+                      <xs:enumeration value="static">
+                        <xs:annotation>
+                          <xs:documentation>Match static methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-static">
+                        <xs:annotation>
+                          <xs:documentation>Match non-static methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match virtual methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match non-virtual methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match abstract methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match non-abstract methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="sealed">
+                        <xs:annotation>
+                          <xs:documentation>Match sealed methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-sealed">
+                        <xs:annotation>
+                          <xs:documentation>Match non-sealed methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="generic">
+                        <xs:annotation>
+                          <xs:documentation>Match generic methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-generic">
+                        <xs:annotation>
+                          <xs:documentation>Match non-generic methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="external">
+                        <xs:annotation>
+                          <xs:documentation>Match methods that have external implementations.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-external">
+                        <xs:annotation>
+                          <xs:documentation>Match non-external methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="pinvoke">
+                        <xs:annotation>
+                          <xs:documentation>Match methods implemented via an invocation of an underlying platform method.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-pinvoke">
+                        <xs:annotation>
+                          <xs:documentation>Match non-pinvoke methods.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:union>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-property-matcher">
+    <xs:complexContent>
+      <xs:extension base="property-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="property-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties having the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-signature" type="signature-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches properties having the specified signature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional property filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:union memberTypes="member-visibility-specifier-type">
+                  <xs:simpleType>
+                    <xs:restriction base="specifier-type">
+                      <xs:enumeration value="static">
+                        <xs:annotation>
+                          <xs:documentation>Match static properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-static">
+                        <xs:annotation>
+                          <xs:documentation>Match non-static properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match non-virtual properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match abstract properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match non-abstract properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="readonly">
+                        <xs:annotation>
+                          <xs:documentation>Match properties that have a getter, but no setter.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-readonly">
+                        <xs:annotation>
+                          <xs:documentation>Match non-read-only properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="writeonly">
+                        <xs:annotation>
+                          <xs:documentation>Match properties that have a setter, but no getter.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-writeonly">
+                        <xs:annotation>
+                          <xs:documentation>Match non-write-only properties.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="readwrite">
+                        <xs:annotation>
+                          <xs:documentation>Match properties that have both, a getter and a setter.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-readwrite">
+                        <xs:annotation>
+                          <xs:documentation>Match non-read-write properties, i.e. either don't have a getter or a setter.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:union>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-event-matcher">
+    <xs:complexContent>
+      <xs:extension base="event-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="event-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches events annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches events having the specified type as their delegate type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-assembly" type="assembly-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches events defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-module" type="module-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches events defined in the specified module.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="defined-in-type" type="exact-type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches events defined in the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional event filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:list>
+              <xs:simpleType>
+                <xs:union memberTypes="member-visibility-specifier-type">
+                  <xs:simpleType>
+                    <xs:restriction base="specifier-type">
+                      <xs:enumeration value="static">
+                        <xs:annotation>
+                          <xs:documentation>Match static events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-static">
+                        <xs:annotation>
+                          <xs:documentation>Match non-static events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match virtual events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-virtual">
+                        <xs:annotation>
+                          <xs:documentation>Match non-virtual events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match abstract events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                      <xs:enumeration value="non-abstract">
+                        <xs:annotation>
+                          <xs:documentation>Match non-abstract events.</xs:documentation>
+                        </xs:annotation>
+                      </xs:enumeration>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:union>
+              </xs:simpleType>
+            </xs:list>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="rule-resource-matcher">
+    <xs:complexContent>
+      <xs:extension base="resource-matcher">
+        <xs:attributeGroup ref="rule-matcher-attributes" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="resource-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:all>
+          <xs:element name="defined-in-assembly" type="assembly-matcher" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Matches resources defined in the specified assembly.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:all>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional resource filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="specifier-type">
+              <xs:enumeration value="public">
+                <xs:annotation>
+                  <xs:documentation>Match resources accessible outside the assembly they are defined in.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="private">
+                <xs:annotation>
+                  <xs:documentation>Match resources not accessible outside the assembly they are defined in.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="attribute-matcher">
+    <xs:complexContent>
+      <xs:extension base="type-matcher">
+        <xs:attribute name="without-named-argument" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Matches elements annotated with an attribute without an actual argument for the specified named parameter.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="signature-matcher">
+    <xs:sequence>
+      <xs:element name="with-parameter" type="parameter-matcher" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Match signatures that have a particular parameter.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="parameters-count" type="xs:integer" use="optional">
+      <xs:annotation>
+        <xs:documentation>Target signature parameters count.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="parameter-matcher">
+    <xs:complexContent>
+      <xs:extension base="name-matcher">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="having-attribute" type="attribute-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches parameters annotated with the specified attribute.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="having-type" type="type-matcher">
+            <xs:annotation>
+              <xs:documentation>Matches parameters having the specified type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+        <xs:attribute name="index" type="xs:integer" use="optional">
+          <xs:annotation>
+            <xs:documentation>Target parameter index in it's containing signature.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="specifiers" use="optional">
+          <xs:annotation>
+            <xs:documentation>Allows additional parameter filtering.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="specifier-type">
+              <xs:enumeration value="ref">
+                <xs:annotation>
+                  <xs:documentation>Match parameters passed by reference (ref in C#).</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="non-ref">
+                <xs:annotation>
+                  <xs:documentation>Match non-ref parameters.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="out">
+                <xs:annotation>
+                  <xs:documentation>Match parameters passed by reference, possible uninitialized (out in C#).</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="non-out">
+                <xs:annotation>
+                  <xs:documentation>Match non-out parameters.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="optional">
+                <xs:annotation>
+                  <xs:documentation>Match optional parameters.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="non-optional">
+                <xs:annotation>
+                  <xs:documentation>Match non-optional parameters.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="params">
+                <xs:annotation>
+                  <xs:documentation>Match parameters taking a variable number of arguments.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+              <xs:enumeration value="non-params">
+                <xs:annotation>
+                  <xs:documentation>Match non-params parameters.</xs:documentation>
+                </xs:annotation>
+              </xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Simple enumerations -->
+
+  <xs:simpleType name="verification-scope-type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="none">
+        <xs:annotation>
+          <xs:documentation>Perform no verification.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="metadata">
+        <xs:annotation>
+          <xs:documentation>Perform metadata verification.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="all">
+        <xs:annotation>
+          <xs:documentation>Verify everything. This is the default.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="renaming-scope-type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="private">
+        <xs:annotation>
+          <xs:documentation>Rename only private members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="assembly">
+        <xs:annotation>
+          <xs:documentation>Rename only internal and private members that are not visible outside the defining assembly. This is the default.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="all">
+        <xs:annotation>
+          <xs:documentation>Rename everything.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="control-flow-level-type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="low">
+        <xs:annotation>
+          <xs:documentation>Apply a low level of control flow obfuscation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="normal">
+        <xs:annotation>
+          <xs:documentation>Apply a normal level of control flow obfuscation. This is the default.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="high">
+        <xs:annotation>
+          <xs:documentation>Apply a high level of control flow obfuscation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="pruning-scope-type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="private">
+        <xs:annotation>
+          <xs:documentation>Prune only private members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="assembly">
+        <xs:annotation>
+          <xs:documentation>Prune only internal and private members that are not visible outside the defining assembly. This is the default.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="all">
+        <xs:annotation>
+          <xs:documentation>Prune everything.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="specifier-type">
+    <xs:restriction base="xs:normalizedString">
+      <xs:enumeration value="class" />
+      <xs:enumeration value="non-class" />
+      <xs:enumeration value="interface" />
+      <xs:enumeration value="non-interface" />
+      <xs:enumeration value="nested" />
+      <xs:enumeration value="non-nested" />
+      <xs:enumeration value="value" />
+      <xs:enumeration value="non-value" />
+      <xs:enumeration value="struct" />
+      <xs:enumeration value="non-struct" />
+      <xs:enumeration value="integral" />
+      <xs:enumeration value="non-integral" />
+      <xs:enumeration value="floating" />
+      <xs:enumeration value="non-floating" />
+      <xs:enumeration value="enum" />
+      <xs:enumeration value="non-enum" />
+      <xs:enumeration value="delegate" />
+      <xs:enumeration value="non-delegate" />
+      <xs:enumeration value="com" />
+      <xs:enumeration value="non-com" />
+      <xs:enumeration value="serializable" />
+      <xs:enumeration value="non-serializable" />
+      <xs:enumeration value="anonymous" />
+      <xs:enumeration value="non-anonymous" />
+      <xs:enumeration value="static" />
+      <xs:enumeration value="non-static" />
+      <xs:enumeration value="virtual" />
+      <xs:enumeration value="non-virtual" />
+      <xs:enumeration value="abstract" />
+      <xs:enumeration value="non-abstract" />
+      <xs:enumeration value="sealed" />
+      <xs:enumeration value="non-sealed" />
+      <xs:enumeration value="generic" />
+      <xs:enumeration value="non-generic" />
+      <xs:enumeration value="const" />
+      <xs:enumeration value="non-const" />
+      <xs:enumeration value="external" />
+      <xs:enumeration value="non-external" />
+      <xs:enumeration value="pinvoke" />
+      <xs:enumeration value="non-pinvoke" />
+      <xs:enumeration value="readonly" />
+      <xs:enumeration value="non-readonly" />
+      <xs:enumeration value="writeonly" />
+      <xs:enumeration value="non-writeonly" />
+      <xs:enumeration value="readwrite" />
+      <xs:enumeration value="non-readwrite" />
+      <xs:enumeration value="ref" />
+      <xs:enumeration value="non-ref" />
+      <xs:enumeration value="out" />
+      <xs:enumeration value="non-out" />
+      <xs:enumeration value="optional" />
+      <xs:enumeration value="non-optional" />
+      <xs:enumeration value="params" />
+      <xs:enumeration value="non-params" />
+      <xs:enumeration value="public" />
+      <xs:enumeration value="non-public" />
+      <xs:enumeration value="protected" />
+      <xs:enumeration value="non-protected" />
+      <xs:enumeration value="internal" />
+      <xs:enumeration value="non-internal" />
+      <xs:enumeration value="protectedinternal" />
+      <xs:enumeration value="non-protectedinternal" />
+      <xs:enumeration value="protectedandinternal" />
+      <xs:enumeration value="non-protectedandinternal" />
+      <xs:enumeration value="private" />
+      <xs:enumeration value="non-private" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="member-visibility-specifier-type">
+    <xs:restriction base="specifier-type">
+      <xs:enumeration value="public">
+        <xs:annotation>
+          <xs:documentation>Match type members (fields, methods, properties, events, and nested-types) that are accessible everywhere their declaring type is accessible.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-public">
+        <xs:annotation>
+          <xs:documentation>Match non-public type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="protected">
+        <xs:annotation>
+          <xs:documentation>Match type members accessible only within its own type and any subtypes.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-protected">
+        <xs:annotation>
+          <xs:documentation>Match non-protected type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="internal">
+        <xs:annotation>
+          <xs:documentation>Match type members not accessible outside the assembly they are defined in.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-internal">
+        <xs:annotation>
+          <xs:documentation>Match non-internal type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="protectedinternal">
+        <xs:annotation>
+          <xs:documentation>Match type members accessible only within the union of its family (its own type and any subtypes) and assembly.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-protectedinternal">
+        <xs:annotation>
+          <xs:documentation>Match non protected internal type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="protectedandinternal">
+        <xs:annotation>
+          <xs:documentation>Match type members accessible only within the intersection of its family (its own type and any subtypes) and assembly.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-protectedandinternal">
+        <xs:annotation>
+          <xs:documentation>Match non protected and internal type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="private">
+        <xs:annotation>
+          <xs:documentation>Match type members accessible only within the type they are defined.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-private">
+        <xs:annotation>
+          <xs:documentation>Match non-private type members.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
