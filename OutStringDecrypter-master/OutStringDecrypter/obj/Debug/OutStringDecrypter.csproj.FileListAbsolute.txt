@@ -1,0 +1,9 @@
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\bin\Debug\OutStringDecrypter.exe.config
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\bin\Debug\OutStringDecrypter.exe
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\bin\Debug\OutStringDecrypter.pdb
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\bin\Debug\dnlib.dll
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\obj\Debug\OutStringDecrypter.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\obj\Debug\OutStringDecrypter.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\obj\Debug\OutStrin.18A373F8.Up2Date
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\obj\Debug\OutStringDecrypter.exe
+C:\Users\diazc\Downloads\OutStringDecrypter-master\OutStringDecrypter-master\OutStringDecrypter\obj\Debug\OutStringDecrypter.pdb
