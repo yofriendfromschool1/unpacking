@@ -1,0 +1,152 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "VMUnprotect.Dumper/1.0.0": {
+        "dependencies": {
+          "AsmResolver": "4.8.0",
+          "AsmResolver.DotNet": "4.8.0",
+          "AsmResolver.PE": "4.8.0",
+          "Sharprompt": "2.4.4"
+        },
+        "runtime": {
+          "VMUnprotect.Dumper.dll": {}
+        }
+      },
+      "AsmResolver/4.8.0": {
+        "runtime": {
+          "lib/netstandard2.0/AsmResolver.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "AsmResolver.DotNet/4.8.0": {
+        "dependencies": {
+          "AsmResolver.PE": "4.8.0",
+          "System.Text.Json": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AsmResolver.DotNet.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "AsmResolver.PE/4.8.0": {
+        "dependencies": {
+          "AsmResolver.PE.File": "4.8.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AsmResolver.PE.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "AsmResolver.PE.File/4.8.0": {
+        "dependencies": {
+          "AsmResolver": "4.8.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AsmResolver.PE.File.dll": {
+            "assemblyVersion": "4.8.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "Sharprompt/2.4.4": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Sharprompt.dll": {
+            "assemblyVersion": "2.4.4.0",
+            "fileVersion": "2.4.4.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ja/Sharprompt.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Text.Json/5.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VMUnprotect.Dumper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AsmResolver/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oVj3wYdQf7GLeCTJyCbCtX8Z9KSnE/pqyhhbrx1bYIqOAphc+0LwgWroGHfhfnZB7BOXBbowUt3c5rahOfszag==",
+      "path": "asmresolver/4.8.0",
+      "hashPath": "asmresolver.4.8.0.nupkg.sha512"
+    },
+    "AsmResolver.DotNet/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yyRumD3fPNLxsUlDbgV4/9dLV/arrwBUfJGGHQXquuOc1vM599qIoVyx/C+wbPtiOmkG0tSW5luDm1+2jMbrXg==",
+      "path": "asmresolver.dotnet/4.8.0",
+      "hashPath": "asmresolver.dotnet.4.8.0.nupkg.sha512"
+    },
+    "AsmResolver.PE/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+ifCT2DVQVMk+Iix7X7OVxhu/eMV87JEwm3GhiAlUucq/8FzA7/M4IcEme0zk7CkZ7MohUlRY5GyiOzGH/2gHQ==",
+      "path": "asmresolver.pe/4.8.0",
+      "hashPath": "asmresolver.pe.4.8.0.nupkg.sha512"
+    },
+    "AsmResolver.PE.File/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FlD0l9aLtIbXLRllkrK/8OLJYfO6p4n9XfFbAFonXjyi6kkpvUNEmMrKkhTndIVkCmQJi/Cusf5t/RHs+v8pOg==",
+      "path": "asmresolver.pe.file/4.8.0",
+      "hashPath": "asmresolver.pe.file.4.8.0.nupkg.sha512"
+    },
+    "Sharprompt/2.4.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z441CI+eOQhLO1n8MvwY0zGki9ocDSE6VJaF3sPt9NHe7ANnT59EuewDoEcB5z3bRsM9c+YLYzr1hr2FDbAVQQ==",
+      "path": "sharprompt/2.4.4",
+      "hashPath": "sharprompt.2.4.4.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    },
+    "System.Text.Json/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+luxMQNZ2WqeffBU7Ml6njIvxc8169NW2oU+ygNudXQGZiarjE7DOtN7bILiQjTZjkmwwRZGTtLzmdrSI/Ustw==",
+      "path": "system.text.json/5.0.0",
+      "hashPath": "system.text.json.5.0.0.nupkg.sha512"
+    }
+  }
+}
