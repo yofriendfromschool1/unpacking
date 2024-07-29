@@ -1,0 +1,159 @@
+Quick Unpack 2.2 for Windows 2000/XP/2003/Vista==Quick Unpack 2.2 для Windows 2000/XP/2003/Vista
+(c) stripper engine by syd==(c) отладочное ядро stripper от syd
+founded by FEUERRADER [AHTeam]==основано FEUERRADER [AHTeam]
+(c) coded by Archer==(c) закодил Archer
+Unable to open file ==Не могу открыть файл 
+OEP is not correct!==Некорректное OEP!
+Some OEP has been detected...==Нашлось кое-какое OEP...
+     PEiD scanning... ==     Сканирование PEiD... 
+     Quick self analyze... ==     Встроенный анализ... 
+Couldn't load target!==Не могу загрузить файл!
+Unpacked file has been deleted==Распакованный файл был удалён
+Access denied or unpacked file not found==Доступ запрещён или распакованный файл не найден
+     PESniffer EP Scan: ==     Сканирование PESniffer: 
+Choose a file to unpack!==Выберите файл для распаковки!
+WARNING! PE Sniffer couldn't scan this file! (reason: ==ВНИМАНИЕ! PE Sniffer не смог просканировать файл! (причина: 
+Coudn't load functions replacement list!==Не могу загрузить список подстановок функций!
+Opened ==Открыт 
+Invalid PE File==Некорректный PE файл
+Access violation==Ошибка доступа
+Not enough memory==Недостаточно памяти
+DB i/o error==Ошибка ввода/вывода в базе данных
+EP not found==Точка входа не найдена
+File i/o error==Ошибка ввода/вывода в файле
+Attached to ==Присоединено к 
+ with PID:== с PID:
+     Hard PEiD scanning. Please wait...==     Глубокое PEiD сканирование. Пожалуйста подождите...
+Deep scan: ==Глубокое сканирование: 
+Hard scan: ==Сильное сканирование: 
+txt files|*.txt||==txt файлы|*.txt||
+dll/exe/ocx/scr files|*.dll;*.exe;*.ocx;*.scr|All files|*.*||==dll/exe/ocx/scr файлы|*.dll;*.exe;*.ocx;*.scr|Все файлы|*.*||
+Find target==Найти изначальный
+Find unpacked==Найти распакованный
+Open file==Открыть файл
+Full unpack==Распаковать
+Kill target==Убить процесс
+Test unpacked==Тест распакованного
+Delete unpacked==Убить распакованный
+Clear log==Очистить лог
+Exit==Выход
+Options==Настройки
+Code==Код
+Find file==Найти файл
+Use force unpacking==Использовать force-метод
+Import recovery==Восстановление импорта
+Smart method==Умный метод
+Smart method+tracer==Умный метод+трассировка
+Do not recover==Не восстанавливать
+Load libraries only==Только загрузка библиотек
+Cut last sections && rebuild resources==Отрезать секции и перестроить ресурсы
+Append overlay==Сохранить оверлей
+Include suspect functions into import==Включать подозрительные функции в импорт
+Attach to process==Аттач к процессу
+Parameters:==Параметры:
+Use script==Скрипт
+Protect DRx==Защита отладочных регистров
+Process call xxx/jmp xxx==Обрабатывать call xxx/jmp xxx
+End of module for import:==Граница для импорта:
+Execute functions while tracing import==Выполнять функции при трассировке импорта
+Time delta:==Сдвиг для времени:
+Restore Delphi initialization table==Восстановить таблицу инициализации Delphi
+No plugins found==Плагинов не найдено
+About==О программе
+Save log==Сохранить лог
+License agreement==Лицензионное соглашение
+Preferences==Настройки
+Force scan with PEiD==Сканировать при помощи PEiD
+File==Файл
+Log==Лог
+Plugins==Плагины
+no==нет
+[Unnamed function]==[нет имени]
+Not found in modules!==Не найден модуль!
+Native function!==Native функция!
+ Name: == Имя: 
+[Import Table], contains invalid/suspect functions==[Таблица импорта], содержит невалидные/подозрительные функции
+[Import Table], OK==[Таблица импорта], OK
+dll files|*.dll||==dll файлы|*.dll||
+Export to ImpRec==Экспорт в ImpRec
+Library==Библиотека
+Function==Функция
+Record RVA==RVA записи
+Record section==Секция записи
+Problem?==Проблема?
+Ord==Орд
+Import list is empty. Export to ImpRec tree is unavailable.==Список импорта пуст. Экспорт в ImpRec невозможен.
+Import list successfully exported\r\nSize of list: ==Список импорта успешно экспортирован\r\nРазмер списка: 
+ byte(s)== байтов
+Save==Сохранить
+Delete selected==Удалить выбранные
+Delete invalid==Удалить невалидные
+Disasm==Дизассемблировать
+Edit==Править
+Load library==Загрузить библиотеку
+Import from ImpRec==Импорт из ImpRec
+Trace with plugin==Трассировка плагином
+Import RVA:==RVA импорта:
+Unpacked file hasn`t been created==Распакованный файл не был создан
+Unpacking finished==Распаковка завершена
+Target loaded at 0x==Файл загружен по 0x
+Force mode activated...==Активирован force-метод
+Loading target...==Загружаю файл...
+Close target, when it will be loaded...==Закройте приложение, когда загрузится
+False breaks detected: ==Ложных остановов: 
+Force mode deactivated. No false breaks found.==Деактивирован force-метод. Ложных остановов не было.
+Breaked at ==Останов на 
+Dumping...==Делаю дамп...
+Can't dump file!==Не могу сделать дамп!
+Last sections and resources were processed==Последние секции и ресурсы были обработаны
+Overlay was appended==Оверлей был добавлен
+Unpacked file saved as ==Распакованный файл сохранён как 
+Delphi initialization table processing failed!==Обработка таблицы инициализации Delphi провалилась!
+Delphi initialization table was processed!==Обработка таблицы инициализации Delphi закончена!
+Attention! Import was not recovered!==Внимание! Импорт не был восстановлен!
+Attention! Only libraries were recovered!==Внимание! Только библиотеки были восстановлены!
+Import thunks not found! Processing original import...==Импорт не найден! Обрабатываю изначальный импорт...
+Used smart import recovery==Импорт обработан умным методом
+Used smart import recovery with tracer==Импорт обработан умным методом с трассировкой
+ - module == - модуль 
+ loaded== загружен
+Unhandled single step at ==Single Step по адресу 
+Unhandled break detected at ==Останов по адресу 
+Unhandled break alt detected at ==Альтернативный останов по адресу 
+Processing relocations...==Обрабатываю релокации...
+Processing libraries... be patient, it may take some time...==Обрабатываю библиотеки... пожалуйста подождите...
+Processing import... be patient, it may take some time...==Обрабатываю импорт... пожалуйста подождите...
+Processing import with tracer... be patient, it may take some time...==Обрабатываю трассировщиком... пожалуйста подождите...
+Something bad happened while tracing import at RVA 0x==Что-то плохое произошло при трассировке импорта по RVA 0x
+Something bad happened while loading library ==Что-то плохое произошло при загрузке библиотеки 
+Something bad happened while executing function ==Что-то плохое произошло при выполнении функции 
+ from == из 
+Processing function ==Обрабатываю функцию 
+WARNING! Process of target couldn't be terminated! PID 0x==Внимание! Не могу убить распаковываемый процесс с PID 0x
+ export hooked...== экспорт перехвачен...
+ unhooked...== снят перехват...
+Import hooked...==Импорт перехвачен...
+[About]==[О программе]
+Choose process and module==Выберите процесс и модуль
+Edit function==Правка функции
+Cancel==Отмена
+ ord:== орд:
+[Disassembler]==[Дизассемблер]
+[OEP Finders]==[Найти OEP]
+Input value==Введите значение
+[Import Tracers]==[Трассировщики импорта]
+[Preferences]==[Настройки]
+Register shell extension==Внести в контекстное меню
+Always on top==Поверх всех окон
+Lua scripting==Скрипты Lua
+Load==Загрузить
+Run==Запустить
+Step==Пошагово
+Close==Закрыть
+Save as...==Сохранить как...
+Run to cursor==Идти до курсора
+Go to cursor==Прыжок на курсор
+Cannot create Lua state: not enough memory==Мало памяти для создания контекста Lua
+Lua script files|*.lua;*.txt|All files|*.*||==Файлы скриптов Lua|*.lua;*.txt|Все файлы|*.*||
+Script finished!==Скрипт завершён!
+Error when reading memory from ==Ошибка чтения памяти по адресу 

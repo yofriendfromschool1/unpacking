@@ -1,0 +1,400 @@
+At first it's strongly recommended to read this manual with care and to the end. If you call functions without any sense the program may crash or you even may get BSOD and potentially lose some data. Only some of the functions can be called in arbitrary order also only some of the functions should be called because some of them are used for internal purposes and this manual clearly states such cases.
+You can take a look at Lua scripting language manual (included in Scripts folder (Lua Manual.html) also www.lua.org) to learn more about scripts also you can examine examples of scripts from Scripts folder (*.txt files).
+If something works the wrong way or not the way it's intended to work read this manual for about 5 more times and only then report a bug. :)
+And now follow extra functions and variables that can be called and used in the scripts.
+
+---------------------------------------------------------------
+Functions
+---------------------------------------------------------------
+
+number AddBreak(number where,number type1,number type2)
+where-address to put a break on
+type1-can be equal to the following values:
+	1-opcode breakpoint (1 byte). The only difference from the standard breakpoint is in the opcode which adds a bit stealth
+	2-standard and well-known 0xCC break
+	3-hardware break in DR0 register
+	4-hardware break in DR1 register
+	5-hardware break in DR2 register
+	6-hardware break in DR3 register
+type2-on what condition to put a break. Can be equal to the following values: 0-on execution, 1-on memory write, 2-on memory write and read. This value is used only then debug register is chosen (type1=3-6) it may equal any value otherwise
+result-true if the breakpoint was enabled; false if error occured (for example there are too many breakpoints (ref. DeleteBreak()))
+The function adds a breakpoint to the breakpoint list. This newly added breakpoint is disabled by default (ref. EnableBreak()). Hardware breaks on memory write and on memory write and read do exist but they've never been used in the program itself+some smart guys say that their usage may cause BSOD therefore it's not recommended to use them
+
+number AddSection(string name,string body, number size)
+name-name of a section
+body-data to be written to a section
+size-size of data to be written to a section
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function adds to the end of a dumped file section and writes data to it. The file should be dumped before calling this function (ref. Dump())
+
+number Attach()
+result-always 0
+The function allows to attach to a running process. The effect is similar to pressing Attach to process button on the main program window. All the information about previously unpacked process will be lost. The function is not thoroughly tested yet so it's not recommended to use it very often
+
+number AttachFast(number PID,number thread_id)
+PID-process id of the process to attach to
+thread_id-id of the thread in the process to attach to
+result-always 0
+The function is similar to the Attach() but doesn't show window with processes. It uses all the current settings and changes just process and thread (useful when packer uses 2 processes like Armadillo)
+
+number CleanImport()
+result-always 0
+The functions cleans import table for the file being unpacked
+
+number Continue(bool skiphooked)
+skiphooked-determines if this function returns when hooked export table breakpoint was triggered or keeps executing
+result-always 0
+The function lets the program run similar to Run button in OllyDbg. Keep in mind when the program hits a breakpoint, this break will be automatically disabled (ref. EnableBreak()). Sometimes program may unexpectedly die it'll be good to check this (ref. break_where) before doing anything else
+
+bool DeleteBreak(number where)
+where-address of a breakpoint
+result-true if the breakpoint was disabled; false if error occured (for example the breakpoint wasn't found in the list)
+The function deletes the breakpoint at the given address from the breakpoint list
+
+number DeleteLastSection()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function deletes last section in the dumped file. The file should be dumped before calling this function (ref. Dump())
+
+number Detach()
+result-always 0
+The functon allows to detach from the process. The function is not thoroughly tested yet so it's not recommended to use it very often
+
+bool DisableBreak(number where)
+where-address of a breakpoint
+result-true if the breakpoint was disabled; false if error occured (for example the breakpoint wasn't found in the list)
+The function disables the breakpoint at the given address
+
+number DisableBreakAll()
+result-always 0
+The function disables all the breaks
+
+bool Disasm(number where)
+where-address to disasm from
+result-true if everything went OK; false if error occured (for example the memory couldn't be read)
+The function disassembles the code at the given address and shows it to the user
+
+number Dump()
+result-0 if success; -1 if error occured (for example process is dead)
+The function makes dump of the process to the memory. Before saving this dump to disk (ref. SaveFile()) necessary operations should be made first (restore import, relocations, TLS, overlay)
+
+number DumpForRelocs()
+result-0 if success; -1 if error occured (for example process is dead)
+To restore relocations (only for a DLL) one should either run extra DLL instance (ref. PreLoad()) or use this function. You should get to the OEP first and then call this function. The process then should be killed and started again only after that one can call RestoreImportRelocs() to rebuild relocations
+
+number EmulateRDTSC(number active,number shift)
+active-can be equal to the following values: 0-disable emulation, 1-enable emulation
+shift-the difference between the results of the two subsequent calls of RDTSC instruction. Recommended to set to 0õ100 and then change if needed.
+result-always 0
+The function needs for the interrupt 1 and interrupt 13 to be hooked (ref. Hook()) and sends request directly to the driver so it's not recommended to use it very often. Disabled by default
+
+bool EnableBreak(number where)
+where-address of a breakpoint
+result-true if the breakpoint was enabled; false if error occured (for example the breakpoint wasn't found in the list)
+The function enables the breakpoint at the given address. Keep in mind that after break was added it should be enabled because it's disabled by default. It also should be enabled after it was hit because then the program hits the breakpoint it disables the breakpoint automatically
+
+number ExecuteFunction(string library, string function, number arg1, number arg2, number arg3, number arg4, number arg5)
+library-full path to the library from which the function should be executed
+function-function name which should be executed
+arg1-arg5-arguments for this function
+result-eax register value after the function was executed if success; -1 if error occured (for example, the library wasn't found)
+The function executes the given function from the given library with the given parameters in the context of the process to unpack. The library is automatically loaded in the context of the process to unpack (ref. LoadExtraLibrary()). Keep in mind that all 5 arguments must be passed! If function takes less than 5 arguments zeros should be added
+
+number Find(string buf,number length,number start,number end)
+buf-string with data to find
+length-size of buf in bytes
+start-address to start the search from in VA
+end-address to and the search in VA
+result-address with the found sequence of bytes; 0 if error occured (for example process is dead) or nothing found
+The function searches for the given sequence of bytes from the given address to the given address and returns address found at or 0 in case of error. The byte order in the memory is the same as byte order in the string. The function searches for the exact sequence of bytes so the given buffer should contain exact string of bytes
+(example: "\104\101\108\108\111")
+
+number FindByMask(string buf,number length,number start,number end)
+buf-string with data to find
+length-size of buf in bytes
+start-address to start the search from in VA
+end-address to and the search in VA
+result-address with the found sequence of bytes; 0 if error occured (for example process is dead) or nothing found
+The function searches for the given sequence of bytes from the given address to the given address and returns address found at or 0 in case of error. The byte order in the memory is the same as byte order in the string. The function allows using of wildcard (example: "558?EC")
+
+number FindOEP()
+result-OEP of the target; 0 if error occured
+The function shows well-known window with an OEP finder choice. The result of it's work is returned by the function
+
+number FullUnpack()
+result-always 0
+The function stands for complete unpack. This function is called then one presses Full unpack button in the main program window. You should set all the values in the main program window for this function to work properly
+
+number GetProcAddress(string library,string function)
+library-full path to the library from which address of the function should be obtained
+function-function name which address should be obtained
+result-address of the function if success; 0 if error occured (for example, the function wasn't found)
+The function returns address of the given function from the given library or 0 in case of error
+
+number Hook(number victim_id, number int1, number int3, number int4, number int6, number int13)
+victim_id-PID of the process to unpack
+int1,int3,int4,int6,int13-what to do with the interrupt. Can be equal to the following values: 0-do nothing, 1-hook, 2-unhook
+result-always 0
+The function sends the request directly to the driver. Used mostly for internal purposes so it's strongly recommended to leave it uncalled BSOD possible otherwise. All the interrupts are hooked by default and the victim_id equals PID of the process to unpack
+
+number ImportAdd(number RVA)
+RVA-address of the instruction which uses import (call dword ptr[xxx], jmp dword ptr[xxx], mov eax,dword ptr[xxx], etc.)
+result-0 if success; 1 if reading of the given memory failed; 2 if the instruction doesn't seem to use import; 3 if import function wasn't recognized
+The function uses only static methods to identify function, it fails in case of redirected import functions (ref. ImportTraceAdd())
+
+number ImportTraceAdd(number RVA)
+RVA-address of the instruction which uses import (call dword ptr[xxx], jmp dword ptr[xxx], mov eax,dword ptr[xxx], etc.)
+result-0 if success; 1 if reading of the given memory failed; 2 if the instruction doesn't seem to use import; 3 if tracing failed
+The function uses tracing to identify the function
+
+number/string InputValue(string caption,string default)
+caption-caption of an input window
+default-default string to be shown in the edit
+result-string or number that was entered; -1 if cancel was pressed
+The function shows a window with given string as a caption and edit to input and returns entered string or number or -1
+
+bool IsEnabled(number where)
+where-address of a breakpoint
+result-true if the breakpoint is enabled; false if the breakpoint is disabled or error occured (for example the breakpoint wasn't found in the list)
+The function returns if the breakpoint at the given address enabled or not. The function was made just in case of a memory loss :)
+
+bool IsExist(number where)
+where-address of a breakpoint
+result-true if the breakpoint exists; false if the breakpoint doesn't exist
+The function returns if the breakpoint at the given address exists or not. The function was made just in case of a memory loss :)
+
+number LoadExtraLibrary(string library)
+library-full path to the library which should be loaded
+result-0 if success; -1 if error occured (for example, library wasn't found)
+The function loads the given library in the context of the process to unpack
+
+number ModuleAddHook(number module_base)
+module_base-imagebase of the module
+result-always 0
+The function adds a module with the given imagebase to a list of modules and hooks it's export if this option is set (ref. import_meth)
+
+number NextInstr(number where)
+where-address of an instruction
+result-address of the following instruction; 0 if error occured (for example, bad address was given)
+The function returns address of the instruction following a given instruction
+
+number Pause(string message)
+message-message to be shown in the MessageBox
+result-always 0
+The function pauses script execution and shows message. When one presses OK at the message window script continues to execute
+
+number PreLoad()
+result-0 if the process was terminated; 1 if success or if the unpacked file is an EXE file and Use force unpacking at the main program window is unticked
+The function is used for Force unpacking (about this you can read at Readme.eng.txt) and for restoring relocations (only for a DLL). Before restoration of relocations (ref. RestoreImportRelocs()) either this function should be called or DumpForRelocs(). OEP at the main program window (also ref. jmp_to_oep) should be set before the function is called. The main difference from DumpForRelocs() is that it gets to the given OEP by itself and kills the process also by itself; when using DumpForRelocs() one should get to the OEP oneself at first and kill the process also oneself (ref. Terminate())
+
+number ProcessRelocs()
+result-always 0
+The functions processes and saves relocations. May be used also with EXE files in that case just nulls the pointer in header
+
+number ProcessResourcesCutSections()
+result-0 if success; -1 if error occured (for example process is dead)
+The function cuts last sections and rips and rebuilds resources. Rebuilt resources are not saved to the file immediately (ref. SaveResources()). When using this function it's usually necessary to rebuild TLS (ref. ProcessTLS()). The function should be called only after the process was dumped (ref. Dump())
+
+number ProcessTLS()
+result-0 if success; -1 if error occured (for example process is dead)
+The function processes TLS and writes it immediately to a separate section .tls. It's not mandatory to call this function. Only if TLS doesn't get in the dumped file (usually when last sections are cut (ref. ProcessResourcesCutSections())), this function should be called. The function should be called only after the process was dumped (ref. Dump())
+
+number ReadMem(number where,number size)
+where-address to read the data from
+size-size of data to read in bytes, can be equal to the following values: 1, 2, 3, 4
+result-read bytes; 0+error message in the log if error occured (for example process is dead)
+The function reads the given number of bytes of data from the given address and returns read bytes or 0 in case of error. The byte order in the result is the reversed byte order in the memory
+
+number ReadMemDump(number where,number size)
+where-address to read the data from, should be given in RVA form!
+size-size of data to read in bytes, can be equal to the following values: 1, 2, 4
+result-read bytes; 0 if error occured
+The function is identical to ReadMem() but reads the data from the dump. The function should be called only after the process was dumped (ref. Dump())
+
+string ReadMemLarge(number where,number size)
+where-address to read the data from
+size-size of data to read in bytes
+result-string with read bytes
+The function reads the given number of bytes of data from the given address and returns string with read bytes. The byte order in the result is the same as byte order in the memory
+
+number RemoveLastSEH(number handler)
+handler-address of the handler returned by SetLastSEH()
+result-always 0
+The function removes the SEH handler set by SetLastSEH() and may be used while manual import tracing to avoid some program crashes when the function being traced isn't import function
+
+number RestoreImportRelocs()
+result-0 if success; -1 if error occured (for example process is dead)
+The function restores import and relocations (only for a DLL, to restore relocations either Use force unpacking (ref. PreLoad()) or DumpForRelocs() functions are needed) with the chosen recovery method (ref. import_meth). They are immediately written to the separate sections .idata and .relocs. The function should be called only after the process was dumped (ref. Dump())
+
+number Resume()
+result-always 0
+The function resumes the thread to unpack after Suspend() and fills some debug sructures. Used mostly for internal purposes
+
+number ResumeAllOther()
+result-always 0
+The function resumes the other threads to unpack after SuspendAllOther() and fills some debug sructures. Used mostly for internal purposes but may be used while manual import recovery for the other threads not to interfere
+
+number SaveFile()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function saves the dumped process from memory to disk. The function should be called the last one when any other needed things are already done with the unpacked process (process dumped, import and if needed relocations, TLS and overlay were restored)
+
+number SaveImport()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function saves import to the file. The function should be called after the process was dumped
+
+number SaveOverlay()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function takes overlay from the source file and adds it to the end of the file. The function should be called immediately before SaveFile() and after the process was dumped, import and if needed relocations and TLS were restored
+
+number SaveResources()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The function saves the resources to a separate section .rsrc. The function should be called only after the resources were ripped from the process (ref. ProcessResourcesCutSections())
+
+number SetLastSEH()
+result-address of the handler in the allocated memory
+The function sets a SEH handler and may be used while manual import tracing to avoid some program crashes when the function being traced isn't import function
+
+number SetMainBreaks()
+result-always 0
+The function sets main breakpoints. It's usually called after Start() or Attach() and it allows to watch loaded modules, hook export table in them (if appropriate option is set, ref. import_meth) and protect debug registers from reading from and writing to them (if appropriate option is set, ref. protect_dr). Calling this function is advisable but sometimes (if the program refuses to run with it) it's better to leave it uncalled
+
+number ShowImport()
+result-0 if success; -1 if error occured (for example, you didn't dump the process, ref. Dump())
+The functions shows a window with import table which allows to edit it manually
+
+number Start()
+result-always 0
+The function loads chosen EXE or DLL file in memory. The function starts the process, puts a breakpoint at the EP (entry point) or at the TLS Callback (if present) and the program stops at this break
+
+number Stop()
+result-always 0
+The function stops the unpacking process. Unpacking thread will be killed (similar to Kill target button in the main program window)
+
+number Suspend()
+result-always 0
+The function suspends the thread to unpack. Used mostly for internal purposes
+
+number SuspendAllOther()
+result-always 0
+The function suspends the other threads to unpack. Used mostly for internal purposes but may be used while manual import recovery for the other threads not to interfere
+
+number Terminate()
+result-always 0
+The function kills the process to unpack. All the information about unpacked process will be lost any further work with it will be impossible
+
+number Trace()
+result-always 0
+The function makes one step using TF (trace flag). Don't use this function too often it's rather slow and may be detected by antidebugging techniques. Sometimes program may unexpectedly die it'll be good to check this (ref. break_where) before doing anything else
+
+number TraceAndReplace(number where)
+where-address to trace
+result-always 0
+The function uses TF (trace flag) to go through breakpoint at given address and then enables the breakpoint back. The function is connected to automatic breakpoint disabling (ref. EnableBreak()) and used mostly for internal purposes. Sometimes program may unexpectedly die it'll be good to check this (ref. break_where) before doing anything else
+
+number Wait()
+result-always 0
+The function loops in a breakpoint handling cycle and fills some debug sructures. Used mostly for internal purposes
+
+number WriteEx(string line, bool dobreak, bool bald, number textcolor)
+line-string for the output into the log
+dobreak-if the text should be output from the new line
+bald-if the font is bald
+textcolor-text color
+result-always 0
+The function is an advanced output of any information into the log. One may also use variables instead of string (ref. WriteLog())
+
+number WriteLog(string line)
+line-string for the output into the log
+result-always 0
+The function outputs any information into the log. One may also use variables instead of string. For example, WriteLog(EAX)
+
+number WriteMem(number where,number buf,number size)
+where-address to write the data to
+buf-variable to write the data from
+size-size of data to write in bytes, can be equal to the following values: 1, 2, 3, 4
+result-number of bytes written; 0 if error occured (for example process is dead)
+The function writes the given number of bytes of data to the given address from the given variable and returns number of bytes written or 0 in case of error. The byte order in the memory is the reversed byte order in the variable
+
+number WriteMemDump(number where,number buf,number size)
+where-address to write the data to, should be given in RVA form!
+buf-variable to write the data from
+size-size of data to write in bytes, can be equal to the following values: 1, 2, 4
+result-number of bytes written; 0 if error occured
+The function is identical to WriteMem() but writes the data to the dump. The function should be called only after the process was dumped (ref. Dump())
+
+number WriteMemLarge(number where,string buf,number size)
+where-address to write the data to
+buf-string to write the data from
+size-size of data to write in bytes
+result-number of bytes written; 0 if error occured (for example process is dead)
+The function writes the given number of bytes of data to the given address from the given variable and returns number of bytes written or 0 in case of error. The byte order in the memory is the same as byte order in the string
+
+---------------------------------------------------------------
+Variables
+---------------------------------------------------------------
+
+number break_where-address at which current breakpoint was triggered. Can be equal to the following values in special cases:
+	0xf00-process died. Sometimes program unexpectedly dies. To prevent useless script execution after a program ran for some time (Continue(), Trace(), TraceAndReplace()) it'll be good to check against this value
+	0xf10-SingleStep. Arises while TF (trace flag) usage, mostly used for internal purposes
+	0xf20-breakpoint on function from hooked export table occured, mostly used for internal purposes
+	0xf30-bUnhandledSingleStep. SingleStep occured but it wasn't caused by us, mostly used for internal purposes
+	0xf31-bUnhandledBreak. Break occured but it wasn't caused by us, mostly used for internal purposes
+	0xf32-bUnhandledBreakAlt. BreakAlt occured but it wasn't caused by us, mostly used for internal purposes
+	0xf40-bDr0. Hardware breakpoint occured at Dr0 register
+	0xf41-bDr1. Hardware breakpoint occured at Dr1 register
+	0xf42-bDr2. Hardware breakpoint occured at Dr2 register
+	0xf43-bDr3. Hardware breakpoint occured at Dr3 register
+
+bool delphi_init-enable or disable restoration of Delphi initialization table. Turn this on only if you are sure that this is Delphi program. By default equals false
+
+bool execute_functions-enable or disable import function execution while tracing import. By default equals the chosen at the main program window checkbutton state
+
+number image_size-size of image, this variable after dump (ref. Dump()) equals size of image, equals 0 before dump
+
+number import_meth-import recovery method. Will the export table of the loaded modules be hooked depends on it (ref. SetMainBreaks()) and the import recovery method itself (ref. RestoreImportRelocs()). Can be equal to the following values: 0-Do not recover, 1-Smart method, 2-Smart method+tracer, 3-Load libraries only. If this variable equals 1 or 2 the export table of the loaded modules will be hooked. By default equals the chosen at the main program window radiobutton state
+
+number import_rva-put import table at this RVA instead of adding extra section. By default equals Import RVA in the main program window
+
+number jmp_to_oep-OEP for the program to unpack, can be used for PreLoad(). By default equals OEP in the main program window
+
+number module_end-treat this number as the end for the module while processing import. The number is used to skip pointers that lead into the module. This is RVA! By default equals end of module in the main program window
+
+string packer-packer which was used to pack the application
+
+string parameters-parameters to be passed to the application to unpack. By default equals Parameters in the main program window
+
+bool protect_dr-enable or disable protection of the debug registers. The protection will work only if appropriate function was called (SetMainBreaks()). By default equals true
+
+number rdtsc_delta-two RDTSC instructions or GetTickCount calls will give the following difference: random(0-255)+delta. Keep in mind that this hook is system-wide. By default equals Time delta in the main program window
+
+bool suspect_calls-enable or disable inclusion of call xxx/jmp xxx functions into import table. By default equals the chosen at the main program window checkbutton state
+
+bool suspect_functions-enable or disable inclusion of suspect functions into import table. By default equals the chosen at the main program window checkbutton state
+
+number version-equals 220. you shouldn't change this value. it may be used only to decide can some script be run on current version or not. I'm not going to ensure complete compatibility with previous versions in order not to turn QuickUnpack into some monster like windows :) so it'll be good if some script is run only on version it's designed for but I'll try to maintain compatibility with previous versions
+
+number victim_base-imagebase the file to unpack is loaded at. Used mostly for internal purposes so it's strongly recommended to leave it unchanged
+
+number victim_handle-handle of the process to unpack. Used mostly for internal purposes so it's strongly recommended to leave it unchanged
+
+number victim_id-PID of the process to unpack. Used mostly for internal purposes so it's strongly recommended to leave it unchanged
+
+number thread_id-ID of the current thread in the process to unpack. Used mostly for internal purposes so it's strongly recommended to leave it unchanged
+
+State of the process to unpack is described by the following variables:
+number EAX-eax register
+number EBX-ebx register
+number ECX-ecx register
+number EDX-edx register
+number EIP-eip register
+number EBP-ebp register
+number ESP-esp register
+number ESI-esi register
+number EDI-edi register
+number EFLAGS-eflags register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR0-dr0 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR1-dr1 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR2-dr2 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR3-dr3 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR6-dr6 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number DR7-dr7 register. Strongly recommended to leave unchanged. BSOD is possible otherwise
+number CS-cs register. Strongly recommended to leave unchanged. BSOD is possible otherwise

@@ -1,0 +1,79 @@
+--this script demonstrates an ability to use OllyDbg with QuickUnpack
+--some things are not very convenient but it's all I've got for now
+--target is PEiD 0.94 packed with PECompact
+--targets for the scripts can be taken here http://qunpack.ahteam.org/files/targets.rar
+if version<200 then		--check QuickUnpack version
+	WriteEx("Your QuickUnpack version suxxx, update it :(",true,true,0x0000ff);
+	return -1;
+end;
+OEP=0x47a526;		--I used PEiD 0.94 as a target so I chose this as OEP. this is not the
+			--real OEP but I'm gonna show some tracing functions and I'll set opcode
+			--break at this fake OEP and I need code at this address not to be modified
+			--while unpacking process
+Start();		--load our target and stop at the EP
+SetMainBreaks();	--set breaks so we could hook export table and protect DRs
+AddBreak(OEP,1,0);	--set break at our OEP. break is opcode so I chose address code at which is
+			--not modified during the unpacking process
+EnableBreak(OEP);	--enable out newly set break
+while true		--now we loop in a cycle
+do
+	Continue(true);			--keep executing our target
+	if break_where==OEP then	--until we hit our OEP
+		break;
+	end;
+	if break_where==0xf00 then	--or until our process unexpectedly dies
+		WriteEx("Damn, process died :(",true,true,0x0000ff);
+		return -1;
+	end;
+end;
+Trace();			--make one step to get to the real OEP
+temp=NextInstr(NextInstr(EIP));	--get the address of the instruction far enough from OEP 
+				--to set break on it
+AddBreak(temp,1,0);	--set opcode break on it
+EnableBreak(temp);	--enable our newly set break
+oldbytes=ReadMem(EIP,2);--we're going to make an infinite loop at the OEP so we must save
+			--2 bytes we're going to overwrite
+oldeip=EIP;		--also we save EIP in case OllyDbg user changes it
+temp=0xFEEB;		--now we'll prepare 2 bytes to put our target in infinite loop
+WriteMem(EIP,temp,2);	--write these 2 bytes
+WriteLog("Eee, attach to me, baby!");	--show the message that we're ready
+Continue(true);		--now continue execution. I'll explain the technique here. we put 
+			--our target in infinite loop so it could wait for us to attach with
+			--OllyDbg. we couldn't just suspend the thread because in that case
+			--while attaching a breakpoint would occur, QuickUnpack driver would
+			--catch this break but it wouldn't be able to process it because
+			--QuickUnpack ring3 code isn't in a cycle that handles breakpoints
+			--and OllyDbg would hang. this is not what we want so I use Continue().
+			--Continue() puts QuickUnpack ring3 code in a breakpoint handling cycle
+			--and this function won't return control until it meets a breakpoint
+			--(some breakpoints may automatically be processed without returning from
+			--the function like hooked export table breakpoint. it depends on the
+			--argument passed to the function). in this case OllyDbg won't hang.
+			--now we can safely attach and do whatever we want with small exceptions.
+			--at this stage there are several breakpoints set by QuickUnpack
+			--(SetMainBreaks function+hooked export table). if we meet this breakpoints
+			--they would be automatically handled because QuickUnpack ring3 code is
+			--in a cycle. BUT when we meet recently set breakpoint 2 instructions
+			--below OEP our continue function returns control (because it's
+ 			--not an automatically set breakpoint, we set it). this is used as a sign
+			--that we're done with OllyDbg and want to continue script execution.
+			--another limitation is that we can't use or can use with limitation debug
+ 			--registers because they are handled by driver, nothing can be done here
+Pause("Detach in OllyDbg and press OK");	--when we're done with OllyDbg and hit our
+						--breakpoint 2 instructions below
+			--the OEP the script will stop here giving us time to detach OllyDbg from
+			--our target. our target is already suspended and you just have to
+			--detach (use some plugin for this). if you try to debug it OllyDbg
+			--will change the context of our thread but thread isn't suspended
+			--and this may cause BSOD so don't do it, just detach
+WriteMem(oldeip,oldbytes,2);	--we've done everything in the script and in the OllyDbg
+				--so it's time to restore the changed code at the OEP
+EIP=oldeip;			--restore also EIP for a correct dump
+Dump();				--now dump the file
+import_meth=1;			--we'll use Smart import recovery method. this assignment isn't
+				--neccessary. this variable is assigned to by default
+RestoreImportRelocs();		--restore import (we've got EXE-file so relocations won't be
+ 				--restored)
+SaveFile();			--save our dumped file with restored import table to the disk
+Terminate();			--terminate our process. we've unpacked it and don't need it
+				--anymore

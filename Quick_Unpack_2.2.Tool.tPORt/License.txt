@@ -1,0 +1,36 @@
+Quick Unpack is Copyright (c) 2008 Archer & FEUERRADER [AHTeam]
+All rights reserved.
+
+THIS  PROGRAM  IS PROTECTED  BY  COPYRIGHT LAW  AND  INTERNATIONAL TREATIES.
+BREAKING THE FOLLOWING AGREEMENT WILL  RESULT  IN SEVERE CIVIL AND  CRIMINAL
+PENALTIES AND WILL BE PROSECUTED TO THE MAXIMUM EXTENT POSSIBLE UNDER LAW.
+
+THIS  AGREEMENT IS  A LEGAL  DOCUMENT. READ  IT CAREFULLY  BEFORE USING  THE
+SOFTWARE. IT PROVIDES A LICENSE TO USE THE  SOFTWARE.
+
+"Software" means the program supplied by FEUERRADER herewith.
+
+Permission is hereby  granted to any  individual, organization or  agency to
+use  the  Software  for  any  legal  NON-COMMERCIAL  purpose,  without   any
+obligation  to  the  author.   You  may   distribute  the   Software freely,
+provided that  the original distribution  package (binaries  and any   other
+files  included in  it) is  left intact. You may also disassemble,   reverse
+engineer or modify the  Software, but you MAY NOT distribute it in  modified
+form.
+
+Any COMMERCIAL  use of  the Software  without prior  written permission from
+the author is strictly prohibited.
+
+DISCLAIMER OF LIABILITY
+
+THIS  SOFTWARE IS   PROVIDED  BY  FEUERRADER "AS  IS"  AND   ANY EXPRESS   OR
+IMPLIED WARRANTIES,    INCLUDING,   BUT  NOT   LIMITED    TO, THE    IMPLIED
+WARRANTIES  OF  MERCHANTABILITY  AND   FITNESS  FOR   A  PARTICULAR  PURPOSE
+ARE  DISCLAIMED.  IN  NO EVENT    SHALL THE   AUTHOR BE    LIABLE FOR   ANY
+DIRECT,   INDIRECT,  INCIDENTAL,  SPECIAL,   EXEMPLARY,  OR    CONSEQUENTIAL
+DAMAGES  (INCLUDING, BUT  NOT  LIMITED TO, PROCUREMENT OF  SUBSTITUTE  GOODS
+OR SERVICES;  LOSS OF USE,  DATA,  OR PROFITS; OR   BUSINESS   INTERRUPTION)
+HOWEVER    CAUSED    AND   ON    ANY    THEORY    OF  LIABILITY,  WHETHER IN
+CONTRACT, STRICT  LIABILITY, OR  TORT (INCLUDING   NEGLIGENCE OR  OTHERWISE)
+ARISING IN  ANY WAY  OUT OF  THE USE  OF THIS  SOFTWARE, EVEN  IF ADVISED OF
+THE POSSIBILITY OF SUCH DAMAGE.

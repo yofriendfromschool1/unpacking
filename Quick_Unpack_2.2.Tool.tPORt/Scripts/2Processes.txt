@@ -1,0 +1,108 @@
+--this script demonstrates QuickUnpack's ability to deal with packers that create 2 processes
+--I promised that QuickUnpack would be able to unpack that kind of packers so here it goes :)
+--target is fantom's crackme7 packed with Minke but this script works for several one-typed 
+--packers with 2 processes. also tested on putty packed with unkOwn_Crypter
+--not tested but should work with AnslymPacker, AREA51 Cryptor, fEaRz Crypter, NME,
+--PI Cryptor, PollyBox, unnamed Scrambler, WindOfCrypt.
+--antiviruses don't like these packers. I packed putty myself so it's harmless. crackme7 was
+--packed by some other guy but I'm pretty sure it's harmless too. anyway don't run if you have
+--any suspicion.
+--targets for the scripts can be taken here http://qunpack.ahteam.org/files/targets.rar
+if version<200 then		--check QuickUnpack version
+	WriteEx("Your QuickUnpack version suxxx, update it :(",true,true,0x0000ff);
+	return -1;
+end;
+import_meth=0;		--we don't need to hook export table now, we'll change it later
+Start();		--load our target and stop at the EP
+SetMainBreaks();	--set breaks so we could hook export table and protect DRs
+--the packer works as follows: it creates another process in suspended state then writes new
+--code section in that new process, sets context, resumes process and then dies. in order to 
+--defeat this packer we must get necessary values, wait for the context to be set and then
+--attach to that new process to do our dirty job
+bCreateProcess=GetProcAddress("kernel32.dll","CreateProcessA");	--lets find address of this
+								--function to set breakpoint
+AddBreak(bCreateProcess,1,0);	--set breakpoint at it
+EnableBreak(bCreateProcess);	--enable out newly set break
+while true					--now we loop in a cycle
+do
+	Continue(true);				--keep executing our target
+	if break_where==bCreateProcess then	--until we hit our break
+		break;
+	end;
+	if break_where==0xf00 then		--or until our process unexpectedly dies
+		WriteEx("Damn, process died :(",true,true,0x0000ff);
+		return -1;
+	end;
+end;
+bReturn=ReadMem(ESP,4);			--now we must let this function execute and then
+					--read necessary values
+ProcInfo=ReadMem(ESP+40,4);		--get address of the PROCESS_INFO structure
+AddBreak(bReturn,1,0);			--add break to the next instruction after the function
+EnableBreak(bReturn);			--enable out newly set break
+while true				--now we loop in a cycle
+do
+	Continue(true);			--keep executing our target
+	if break_where==bReturn then	--until we hit our break
+		break;
+	end;
+	if break_where==0xf00 then	--or until our process unexpectedly dies
+		WriteEx("Damn, process died :(",true,true,0x0000ff);
+		return -1;
+	end;
+end;
+pid=ReadMem(ProcInfo+8,4);		--after the function executed we can get PID and
+tid=ReadMem(ProcInfo+12,4);		--thread ID of our new process to use them later to attach
+bSetContext=GetProcAddress("kernel32.dll","SetThreadContext");	--now we must get address of this
+								--function
+AddBreak(bSetContext,1,0);	--and set breakpoint on it. we'll use it to get OEP in the new 
+				--process
+EnableBreak(bSetContext);	--enable out newly set break
+while true					--now we loop in a cycle
+do
+	Continue(true);				--keep executing our target
+	if break_where==bSetContext then	--until we hit our break
+		break;
+	end;
+	if break_where==0xf00 then		--or until our process unexpectedly dies
+		WriteEx("Damn, process died :(",true,true,0x0000ff);
+		return -1;
+	end;
+end;
+temp=ReadMem(ESP+8,4);			--now we get address of the CONTEXT structure
+jmp_to_oep=ReadMem(temp+0xb0,4);	--and read OEP from there
+bResumeThread=GetProcAddress("kernel32.dll","ResumeThread");	--now we're almost ready to attach
+AddBreak(bResumeThread,1,0);			--we should let this process finish it's work
+EnableBreak(bResumeThread);			--so we'll get to the ResumeThread
+while true					--now we loop in a cycle
+do
+	Continue(true);				--keep executing our target
+	if break_where==bResumeThread then	--until we hit our break
+		break;
+	end;
+	if break_where==0xf00 then		--or until our process unexpectedly dies
+		WriteEx("Damn, process died :(",true,true,0x0000ff);
+		return -1;
+	end;
+end;
+victim_base=(jmp_to_oep & 0xfffff000)+0x1000;	--now using OEP we'll get imagebase. we can't get
+						--exact imagebase right now we'll find it a bit
+						--later
+jmp_to_oep=jmp_to_oep-victim_base;	--imagebase must be substracted from OEP for the
+					--attach function to work properly
+oldpid=victim_id;			--we must memorize these values in order to
+oldtid=thread_id;			--kill the first process later
+AttachFast(pid,tid);			--attach to it using values acquired
+repeat					--while dumping we're gonna need exact imagebase so it's
+	victim_base=victim_base-0x1000;	--time to get it. we'll scan the memory for the MZ
+	temp=ReadMem(victim_base,2);	--signature. the first occurence is treated as imagebase
+until temp==0x5a4d;
+Dump();				--dump this bitch
+ProcessResourcesCutSections();	--I decided to rebuild resorces here and to cut last sections
+import_meth=1;			--now we restore this in order to restore import
+RestoreImportRelocs();		--restore our import
+ProcessTLS();			--we cut sections so we must process TLS too
+SaveResources();		--save our ripped and rebuilt resources
+SaveFile();			--save our dumped file with restored import table to the disk
+Terminate();			--nail this bastard
+AttachFast(oldpid,oldtid);	--it's time to smash the first process
+Terminate();			--nail it too

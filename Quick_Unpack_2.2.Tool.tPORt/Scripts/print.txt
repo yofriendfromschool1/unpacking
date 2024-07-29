@@ -1,0 +1,33 @@
+--just some crap without comments. I used it to debug my
+--scripts. target was PEiD 0.94
+--targets for the scripts can be taken here http://qunpack.ahteam.org/files/targets.rar
+OEP=0x47a526;
+
+Start();
+SetMainBreaks();
+AddBreak(OEP,1,0);
+EnableBreak(OEP);
+repeat Continue(true);
+until break_where==OEP;
+Trace();
+
+str=InputValue("Enter string","");
+WriteLog(str);
+
+temp=0x6160;
+WriteMem(EIP+2,temp,2);
+temp=ReadMem(EIP,4);
+WriteLog(string.format("0x%.08X",temp));
+
+temp="\96\96";
+WriteMemLarge(EIP+2,temp,2);
+temp=ReadMem(EIP,4);
+WriteLog(string.format("0x%.08X",temp));
+
+temp=NextInstr(0x45a906);
+WriteLog(string.format("0x%.08X",temp));
+
+Dump();
+RestoreImportRelocs();
+SaveFile();
+Terminate();
