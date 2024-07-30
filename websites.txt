@@ -1,0 +1,9 @@
+https://www.decompiler.com
+ EXE or DLL,
+JAR or CLASS,
+APK, XAPK or DEX,
+PYC or PYO,
+LUAC or LUB,
+SMX or AMXX file
+https://pylingual.io
+pyc
