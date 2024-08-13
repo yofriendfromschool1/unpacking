@@ -1,0 +1,449 @@
+;(function (win, doc, $, undefined) {
+    window._is_weixin = function() {
+        var _ua = window.navigator.userAgent.toLowerCase();
+        if (_ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+        } else {
+            return false;
+        }
+    }()
+    try {
+        var logininPlug = function (opts) {
+            this.init(opts)
+        }
+        logininPlug.prototype = {
+            constructor: logininPlug,
+            options: {
+                name: 'yPreview',
+                elem: 'preview-images'
+            },
+            config: function (opts) {
+                //没有参数传入，直接返回默认参数
+                if (!opts) return this.options;
+                //有参数传入，通过key将options的值更新为用户的值
+                for (var key in opts) {
+                    this.options[key] = opts[key];
+                }
+                return this;
+            },
+            init: async function (opts) {
+                var _this = this;
+                var option = this.config(opts, this.options);//用户配置
+                this.stylesheet();
+                var domtemplate = this.template();
+                $('body').append(domtemplate);
+                await this.initNECaptcha()
+    
+                $('.login_inside_box .tab .tabItem').off('click').on('click', function (e) {
+                    $('.login_inside_box .tab .tabItem').removeClass('active');
+                    $(this).addClass('active');
+                    if ($(this).data('idx') == 1) {
+                        $(".mobile_box").hide()
+                        $(".account_box").show()
+                    } else if ($(this).data('idx') == 2) {
+                        $(".account_box").hide()
+                        $(".mobile_box").show()
+                    }
+                })
+    
+                $(".closeLoginBox").on('click',function(){
+                    $(".kx_login_plugbox").hide();
+                })
+    
+                $(".wechat_login").on('click',function(){
+                    
+                    var loop;
+                    clearInterval(loop);
+                    var wx_login_url = window.open("https://passport.kanxue.com/wx_user-wx_login_other.htm","看雪微信登录","width=600,height=500,fullscreen=1")
+                    loop = setInterval(() => {    // 使用定时器查询当前状态
+                        
+                        if (document.cookie.indexOf("wxlogin_isfreshen") !== -1) {
+                            // 包含myCookieValue
+                            clearInterval(loop);       // 清除定时器
+    
+                            window.location.reload()
+                            
+                        }
+    
+                        if (wx_login_url && wx_login_url.closed) {  // 进行判断条件   closed属性就是返回当前窗口的状态
+                          console.log('我被关闭了')
+                          clearInterval(loop);       // 清除定时器
+                     
+                          // Logical code
+                        }
+                      }, 1000);
+                })
+    
+                if(_is_weixin) {
+                    $('#wx_explore').show();
+                    $('#wx_explore').on('click','a.btn',function(){
+                        $(this).addClass('disabled')
+                    })
+                }
+            },
+            stylesheet: function () {
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.appendChild(document.createTextNode(`.login_inside_box .login-sns a.wechat_login,.login_inside_box .login-sns  .github_login{width:45px;height:45px;display:inline-block;border-radius:50%;line-height:45px;font-size:20px}
+                .login_inside_box .close{position:absolute;top:0px;right:20px;width:17px;height:17px}
+                .login_inside_box .loginInputBox{padding:0 32px}
+                .login-modal-backdrop{opacity:.75;position:fixed;top:0;right:0;bottom:0;left:0;z-index:1048;background-color:#000}
+                .login_inside_box{position:fixed;background:#fff;z-index:1049;max-width:384px; width:100%; padding-top:24px;padding-bottom:16px;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);box-shadow:0 12px 24px 0 rgb(28 31 33 / 10%);border-radius:12px;transition:all .2s;-webkit-transition:all .2s;-moz-transition:all .2s;-o-transition:all .2s}
+                .login_inside_box .formControl{width:100%;height:48px;line-height:20px;box-sizing:border-box;padding:14px;box-shadow:2px 0 5px 0 #fff;background:rgba(28,31,33,.06);border-radius:8px;border:0}
+                .login_inside_box .text-center{text-align:center}
+                .login_inside_box .bg-white{background-color:#fff}
+                .login_inside_box .tab{padding:0 20px 18px 30px;font-size:18px;line-height:40px;font-weight:700;height:40px;color:#787d82;box-sizing:content-box}
+                .login_inside_box .tab .tabItem{float:left;text-align:center;height:40px;line-height:40px;cursor:pointer;margin-right:32px}
+                .login_inside_box .tab .active{color:#0099ee}
+                .login_inside_box .tab .active::after{content:" ";width:16px;height:4px;line-height:4px;background:#0099ee;border-radius:2px;display:block;margin:0 auto}
+                .d-none{display:none}
+                .login_inside_box #sendactive{cursor:pointer} input:focus-visible {outline: unset;} .login_inside_box  button:focus {outline: unset !important;}
+                @media (max-width: 768px) {
+                    #weixin_mobile { display: none; }
+                }`));
+                var head = document.getElementsByTagName('head')[0];
+                head.appendChild(style);
+    
+            },
+            template: function () {
+                var domHtml = `<div class="kx_login_plugbox" style=" display:none;">
+                <div class="bg-white login_inside_box" style="border-radius: 5px;">
+            <div style="position: relative;">
+                <h1 class="tab">
+                    <div class='tabItem active' data-idx='1'>账号登录</div>
+                    <div class='tabItem' data-idx='2'>验证码登录</div>
+                </h1>
+                <button type="button" class="close closeLoginBox" data-dismiss="alert" aria-label="Close">×</button>
+            </div>
+            <div class="loginInputBox account_box">
+                <form id="loginform" action="/user-kanxue_login.htm" class="form" method="POST">
+    
+                    <div class="form-group input-group mb-4">
+                        <input class="formControl" type="text" name="account" id="account" autocomplete="off"
+                            placeholder="用户名&nbsp;/&nbsp;邮箱&nbsp;/&nbsp;手机号 (暂不支持非中国大陆区手机号)">
+                        <div class="invalid-feedback"></div>
+                    </div>
+    
+                    <div class="form-group input-group mb-4">
+    
+                        <input class="formControl" type="password" name="password" id="password" placeholder="密码" autocomplete="new-password">
+                        <div class="invalid-feedback"></div>
+                    </div>
+    
+                    <div id="captcha_div1"><input type="hidden" name="NECaptchaValidate" value="" class="yidun_input"></div>
+    
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block text-white btn-lg j-login " style="background: #0099ee;"
+                            data-loading-text="正在登录..." default-text="登录">登 录</button>
+                    </div>
+    
+                    <div class="login-sns mb-3" id="wx_explore" style="display:none;">
+                          <a href="//passport.kanxue.com/wx_user-wx_mobile_login.htm" class="btn text-white" style="padding: 0.5rem 1rem; width: 100%; background: #3c9306;" role="button">
+                            微信一键登录
+                          </a>
+                    </div>
+                </form>
+            </div>
+            <div class="loginInputBox mobile_box" style="display:none;">
+                <form id="loginform2" action="user-mobile.htm" class="form" method="POST">
+    
+                    <div class="form-group input-group mb-4">
+                        
+                        <input class="formControl" type="number" name="mobile" id="mobile" placeholder="手机号 (暂不支持非中国大陆区手机号)">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="mb-4" style="height: 40px; line-height: 40px;">
+                        <div id="captcha_div2"></div>
+                    </div>
+                    <div class="input-group mb-4" style="position: relative;">
+                        <input type="text" class="formControl" name="verifycode" placeholder="手机验证码" aria-label="手机验证码" aria-describedby="sendactive">
+                        <div class="input-group-append" style="position: absolute;right: 14px;top: 12px;font-size: 14px;line-height: 24px;">
+                            <span id="sendactive" style="color: #0099ee">获取验证码</span>
+                        </div>
+                    </div>
+                    <div class="alert_tip pb-1" style="color:red;"></div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block text-white btn-lg j-phone-login" style="background: #0099ee;"
+                            data-loading-text="正在登录..." default-text="登录">登 录</button>
+                    </div>
+    
+                    
+                </form>
+            </div>
+            <dl class="row mx-0" style="padding: 0 32px;">
+                <dd class="mb-0"><a href="https://passport.kanxue.com/user-findpw.htm" class="text-muted mr-3"><small>忘记密码？</small></a></dd>
+                <dd class="text-right mb-0 col px-0"><a href="https://passport.kanxue.com/user-mobile-1.htm" class="text-muted"><small>没有账号？立即免费注册</small></a></dd>
+            </dl>
+    
+            <div class="login-sns text-center " id="weixin_mobile">
+                <div class=" text-muted my-0 position-relative">
+                    <hr class=" position-absolute w-100">
+                    <div class="d-inline-block bg-white px-3 position-relative" style="height: 28px; line-height: 28px;">
+                        使用以下账号登录
+                    </div>
+                </div>
+    
+                <a href="javascript:;" class="wechat_login my-2">
+                    <img src="https://passport.kanxue.com/pc/view/img/wechat_login.png" style="width: 100%; height: 100%;"
+                        alt="" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Use Wechat and scan the QR code to login in.">
+                </a>
+    
+                
+    
+            </div>
+     
+            <div class="mt-2 text-center small" style="padding: 0 32px;">
+                <input type="checkbox" name="xieyi" id="" checked="" style="vertical-align: middle;">
+                <span>我已同意</span>
+                <a class="color0099ee" href="//zhuanlan.kanxue.com/article-17033.htm" target="_blank">《看雪服务条款》</a>
+                <a class="color0099ee" href="//zhuanlan.kanxue.com/article-17032.htm" target="_blank">《看雪课程免责声明》</a>
+                
+                <a class="color0099ee" href="//zhuanlan.kanxue.com/article-17005.htm" target="_blank">《看雪隐私政策》</a>
+    
+            </div>
+        </div>
+    
+        <div class="login-modal-backdrop"></div>
+                </div>`;
+                return domHtml
+            },
+            initNECaptcha: async function () {
+                // 账号密码登录
+                var netease = (function () {
+                    var init = function (cid, ele) {
+    
+    
+                        var captchaIns,jaccount,jpassword;
+    
+                        initNECaptcha({
+                            captchaId: cid,
+                            element: ele,
+                            mode: 'popup',
+                            width: '320px',
+    
+                            onVerify: function (err, data) {
+    
+                                if (err) return  // 当验证失败时，内部会自动refresh方法，无需手动再调用一次
+                                // 点击登录按钮后可调用服务端接口，以下为伪代码，仅作示例用
+                                var jNECaptchaValidate;
+                                if (verify_code_mode == 1) {
+    
+                                    jNECaptchaValidate = jform.find('input[name="NECaptchaValidate"]').val();
+    
+                                } else if (verify_code_mode == 2) {
+                                    jNECaptchaValidate = $("#private_key").val();
+                                }
+                                var postdata = { account: jaccount.val(), password: md5(jpassword.val()), NECaptchaValidate: jNECaptchaValidate };
+    
+                                jsubmit.button('loading');
+    
+                                setTimeout(function () {
+                                    $.xpost(jform.attr('action'), postdata, function (code, message) {
+                                        if (code == 0) {
+                                            jsubmit.button('登录成功');
+    
+                                            window.location.reload()
+                                        } else if (code == -1) {
+                                            $(".account_box #account").css("border",'1px solid red');
+                                            $(".account_box #password").css("border",'1px solid red');
+                                            jsubmit.button('登录失败');
+                                            $.alert(message);
+                                            setTimeout(function(){
+                                                $(".account_box #account").css("border",'unset');
+                                                $(".account_box #password").css("border",'unset');
+                                                jsubmit.button('reset');
+                                            },1000)
+                                            captchaIns && captchaIns.refresh()
+                                        } else {
+                                            if (code == 1) jaccount.alert(message).focus();
+                                            if (code == 2) jpassword.alert(message).focus();
+    
+                                            jsubmit.button('reset');
+                                            captchaIns && captchaIns.refresh()
+                                        }
+                                    });
+                                }, 1000);
+    
+                            }
+    
+                        }, function onload(instance) {
+                            // 初始化成功
+                            captchaIns = instance
+                        }, function onerror(err) {
+    
+                            // 验证码初始化失败处理逻辑，例如：提示用户点击按钮重新初始化
+                        })
+                        var jform = $('#loginform');
+                        jaccount = jform.find('input[name="account"]');
+                        jpassword = jform.find('input[name="password"]');
+    
+                        var jsubmit = jform.find('button.j-login');
+                        var verify_code_mode = '1';
+    
+                        $(".j-login").off('click').on('click', function () {
+    
+                            if (!jaccount.val()) {
+                                $(".account_box #account").css("border",'1px solid red');
+                                setTimeout(function(){
+                                    $(".account_box #account").css("border",'unset');
+                                },1000)
+                                jaccount.focus();
+                                return false;
+                            } else if (!jpassword.val()) {
+                                $(".account_box #password").css("border",'1px solid red');
+                                setTimeout(function(){
+                                    $(".account_box #password").css("border",'unset');
+                                },1000)
+                                jpassword.focus();
+                                return false;
+                            }
+    
+                            captchaIns && captchaIns.popUp()
+    
+    
+                            return false;
+                        });
+    
+                    }
+                    return { init: init }
+                })();
+                netease.init('e019d55cf18348519c201a0d2f80ebfb', '#captcha_div1');
+    
+    
+                // 验证码组件初始化  float模式 手机验证码登录
+                var netease = (function () {
+                    var init = function (cid, ele) {
+                        initNECaptcha({
+                            captchaId: cid,
+                            element: ele,
+                            mode: 'float',
+                            width: '100%',
+                            float: 'left',
+                            onVerify: function (err, ret) {
+                                if (!err) {}
+                                $(".mobile_box .alert_tip").text('')
+                            }
+                        }, function (instance) {
+                            $(".yidun").css("float", "left");
+    
+                        }, function (err) {
+    
+                        });
+                    }
+                    return { init: init }
+                })();
+                netease.init('e019d55cf18348519c201a0d2f80ebfb', '#captcha_div2');
+                var jform = $('#loginform2');
+                var jmobile = jform.find('input[name="mobile"]');
+                var jverifycode = jform.find('input[name="verifycode"]');
+                
+                var jsubmit = jform.find('button.j-phone-login');
+    
+                var verify_code_mode2 = 1;
+                $(".j-phone-login").off('click').on('click', function () {
+    
+                    if (!jmobile.val()) {
+                        jmobile.css("border",'1px solid red');
+                        setTimeout(function(){
+                            jmobile.css("border",'unset');
+                        },1000)
+    
+                        jmobile.focus();
+                        return false;
+                    } else if (!jverifycode.val()) {
+                        jverifycode.css("border",'1px solid red');
+                        setTimeout(function(){
+                            jverifycode.css("border",'unset');
+                        },1000)
+                        jverifycode.focus();
+                        return false;
+                    }
+    
+                    var postdata = jform.serialize();
+    
+                    jsubmit.button('loading');
+                    $.xpost(jform.attr('action'), postdata, function (code, message) {
+                        if (code == 0) {
+                            jsubmit.button('登录成功');
+                            window.location.reload()
+                        } else if (code == -1) {
+                            $(".mobile_box .alert_tip").text(message)
+                            $.alert(message);
+                            jsubmit.button('reset');
+                        } else {
+                            jsubmit.button('reset');
+                            if (code == 1) {
+                                $(".mobile_box .alert_tip").text(message)
+                                jmobile.focus()
+                                return false
+                            };
+                            if (code == 2) {
+                                $(".mobile_box .alert_tip").text(message)
+                                jverifycode.focus()
+                                return false
+                            };
+                            $(".mobile_box .alert_tip").text(message)
+                        }
+                    });
+                    return false;
+                });
+    
+                var jsendactive = $('#sendactive');
+                jsendactive.on('click', function () {
+    
+                    if (!jmobile.val()) {
+                        jmobile.css("border",'1px solid red');
+                        setTimeout(function(){
+                            jmobile.css("border",'unset');
+                        },1000)
+                        jmobile.focus();
+                        
+                        return false;
+                    }
+                    var jNECaptchaValidate;
+                    if (verify_code_mode2 == 1) {
+                        jNECaptchaValidate = jform.find('input[name="NECaptchaValidate"]').val();
+                    } else if (verify_code_mode2 == 2) {
+                        jNECaptchaValidate = $("#private_key").val();
+                    }
+                    console.log(2)
+    
+                    $.xpost('user-mobile_sendreset.htm', { mobile: jmobile.val(), piccode: jNECaptchaValidate }, function (code, message) {
+                        if (code == 0) {
+                            button_count_down(jsendactive, '发送成功 ({time})', 60);
+                            return;
+                        } else if (code == 1) {
+                            $(".mobile_box .alert_tip").text(message)
+                            jmobile.focus();
+                        } else {
+                            $(".mobile_box .alert_tip").text(message)
+                        }
+    
+                    });
+                });
+    
+                // 倒计时
+                function button_count_down(jbutton, text, seconds) {
+       
+                    if (window.button_count_down_t) clearInterval(window.button_count_down_t);
+                    window.button_count_down_t = setInterval(function () {
+                        if (seconds-- <= 0) {
+                            clearInterval(window.button_count_down_t);
+                            window.button_count_down_t = 0;
+      
+                            return;
+                        }
+                        var text2 = text.replace('{time}', seconds);
+                        jbutton.text(text2);
+                    }, 1000);
+                }
+            }
+        }
+        win.logininPlug = logininPlug;
+        new logininPlug();
+    } catch (error) {
+        
+    }
+
+})(window, document, jQuery);
