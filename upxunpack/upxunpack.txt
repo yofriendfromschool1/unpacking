@@ -1,0 +1,3 @@
+debug in x64dbg and run till entry point pushad and then scroll down till u see jmp or the last line before all the add stuff then put
+a breakpoint there then run again and then step into then copy the first address at the top and then go to syclla
+then paste the address into OEP then IAT Autosearch then Get imports, delete tree nodes on any fails/x then dump then fix dump (fix dump sumtimes no work and that ok)
