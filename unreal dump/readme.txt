@@ -1,0 +1,1 @@
+inject this dll to dump the offsets and generate game sdk
