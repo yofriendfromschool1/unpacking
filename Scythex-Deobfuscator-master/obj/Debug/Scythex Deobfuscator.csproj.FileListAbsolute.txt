@@ -1,0 +1,10 @@
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\bin\Debug\Scythex Deobfuscator.exe.config
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\bin\Debug\Scythex Deobfuscator.exe
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\bin\Debug\Scythex Deobfuscator.pdb
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\bin\Debug\dnlib.dll
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\bin\Debug\dnlib.xml
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\obj\Debug\Scythex Deobfuscator.csproj.AssemblyReference.cache
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\obj\Debug\Scythex Deobfuscator.csproj.CoreCompileInputs.cache
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\obj\Debug\Scythex .7C4ED837.Up2Date
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\obj\Debug\Scythex Deobfuscator.exe
+C:\Users\diazc\Downloads\Scythex-Deobfuscator-master\Scythex-Deobfuscator-master\obj\Debug\Scythex Deobfuscator.pdb
