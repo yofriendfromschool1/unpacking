@@ -1,0 +1,93 @@
+Unpacking Obsidium-protected executables involves bypassing anti-debugging measures, rebuilding imports, and often patching specific protection routines. Here's a detailed step-by-step guide on how to unpack an Obsidium-protected executable:
+
+---
+
+## ✅ Step-by-Step Guide to Unpack Obsidium:
+
+### ⚠️ Requirements:
+- **x64dbg (64-bit)** or **OllyDbg (32-bit)**
+- **Scylla** (import reconstruction tool, often bundled with x64dbg)
+- **ScyllaHide / TitanHide** (Anti-debugging bypass plugins)
+- **Detect It Easy (DIE)** or **ExeinfoPE** (to confirm Obsidium version)
+
+---
+
+## 🔎 Step 1: Confirm Obsidium Protection
+
+- Load the executable in **Detect It Easy** or **ExeinfoPE**.
+- Confirm Obsidium (it'll usually explicitly state "Obsidium" along with version).
+
+---
+
+## 🛡️ Step 2: Setup Debugging Environment (x64dbg Recommended)
+
+- Launch **x64dbg** (or **OllyDbg** for 32-bit executables).
+- **Install and enable ScyllaHide plugin**:
+  - Options → Preferences → Plugins → Enable "ScyllaHide".
+  - Configure ScyllaHide with recommended anti-anti-debug settings (to hide debugger presence from Obsidium).
+
+---
+
+## 🚩 Step 3: Locate Original Entry Point (OEP)
+
+- Load your Obsidium-protected executable into x64dbg.
+- Run (F9) to reach the initial breakpoint set by the debugger.
+- Now, set breakpoints at key APIs often used by Obsidium to reach OEP:
+  ```
+  kernel32.dll: GetModuleHandleA/W, VirtualProtect, VirtualAlloc, LoadLibrary, GetProcAddress
+  ```
+- Execute the program step-by-step (F7, F8) or run through (F9) carefully:
+  - Watch for transitions from unpacking code to actual program logic.
+  - Typically, Obsidium OEP is reached after multiple calls of unpacking routines.
+
+**Alternative Method (Fast)**:
+- Set hardware breakpoints (access/write) on the executable’s code section.
+- Run the executable until these breakpoints trigger, indicating code unpacking into memory.
+- This often directly leads you near the OEP.
+
+---
+
+## 💾 Step 4: Dump Unpacked Image from Memory
+
+- Once at the OEP:
+  - Note down the exact address for future reference.
+  - Use **Scylla** (Plugins → Scylla in x64dbg) to dump the unpacked executable from memory.
+- Scylla settings:
+  - Ensure correct OEP is entered.
+  - Click "Dump" to generate raw unpacked binary.
+
+---
+
+## 🔧 Step 5: Fix Import Address Table (IAT)
+
+- Still in Scylla, click on **IAT Autosearch**.
+  - It will automatically locate the Import Table from memory.
+- Click "Get Imports," then "Fix Dump."
+- Provide the dumped file (from Step 4) for fixing. Scylla will output a fixed executable (usually marked as `_SCY.exe`).
+
+---
+
+## 🧪 Step 6: Test Your Unpacked Executable
+
+- Run the unpacked executable to confirm functionality.
+- Use static analysis (IDA Pro, Ghidra, DIE) to confirm removal of Obsidium protections.
+- Occasionally, some manual patching may be required if the executable crashes or detects unpacking.
+
+---
+
+## 🛠️ Troubleshooting Tips:
+
+- If the unpacked executable crashes:
+  - Re-check OEP; you may have stopped too early or late.
+  - Review IAT carefully in Scylla; verify imports manually if needed.
+- Obsidium anti-debugging:
+  - Confirm **ScyllaHide** settings are sufficient.
+  - Consider **TitanHide** if ScyllaHide fails to bypass checks.
+
+---
+
+## 📚 Additional Resources:
+
+- **Reverse Engineering Forums**: Tuts4You, KernelMode.info, UnknownCheats
+- **YouTube Tutorials**: Search "Unpacking Obsidium executable"
+- **Blogs**: Reverse-engineering blogs often document detailed case studies.
