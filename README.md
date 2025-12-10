@@ -10,3 +10,4 @@ chrome extensions: https://chromewebstore.google.com/detail/chrome-extension-sou
 https://chromewebstore.google.com/detail/crx-extractordownloader/ajkhmmldknmfjnmeedkbkkojgobmljda?hl=en-US
 https://crx-downloader.com/
 https://github.com/SomMeri/grunt-zip-to-crx
+https://github.com/leetonidas/demovfuscator
