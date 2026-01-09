@@ -99,7 +99,7 @@
         // 3. CALL API (Using GM_xmlhttpRequest to bypass CORS)
         GM_xmlhttpRequest({
             method: "POST",
-            url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+            url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent?key=${API_KEY}`, // model
             headers: { "Content-Type": "application/json" },
             data: JSON.stringify({
                 contents: [{ parts: [{ text: prompt }] }]
