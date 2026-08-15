@@ -11,3 +11,4 @@ https://chromewebstore.google.com/detail/crx-extractordownloader/ajkhmmldknmfjnm
 https://crx-downloader.com/
 https://github.com/SomMeri/grunt-zip-to-crx
 https://github.com/leetonidas/demovfuscator
+https://www.mitmproxy.org/
