@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=https://www.freecoursesonline.me/?1
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+IDList=
+URL=https://www.freecoursesonline.me/?1
+IconFile=https://www.freecoursesonline.me/wp-content/uploads/2017/11/white-on-red-Copy.png
+IconIndex=1
