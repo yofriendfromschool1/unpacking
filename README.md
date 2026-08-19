@@ -13,3 +13,4 @@ https://github.com/SomMeri/grunt-zip-to-crx
 https://github.com/leetonidas/demovfuscator
 https://www.mitmproxy.org/
 https://github.com/ergrelet/unlicense
+vmp: https://www.youtube.com/watch?v=-ZMGFaFoaMs
