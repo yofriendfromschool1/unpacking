@@ -21,3 +21,7 @@ https://github.com/morluto/rea
 https://github.com/storytold/craft-anything
 https://github.com/openbin-ai/binny
 https://github.com/anymousdark/anymous
+https://github.com/ben-sb/javascript-deobfuscator
+https://thanhle.io.vn/de4js/
+https://github.com/HumanSecurity/restringer
+https://github.com/j4k0xb/webcrack
