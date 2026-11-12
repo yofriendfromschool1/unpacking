@@ -19,3 +19,5 @@ https://decompiler.com
 https://pylingual.io
 https://github.com/morluto/rea
 https://github.com/storytold/craft-anything
+https://github.com/openbin-ai/binny
+https://github.com/anymousdark/anymous
