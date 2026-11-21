@@ -1,0 +1,176 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/win-x64": {
+      "CikExtractor/1.0.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.5.1",
+          "Registry": "1.5.0",
+          "Spectre.Console.Cli": "0.49.2-preview.0.75",
+          "System.Management": "9.0.2"
+        },
+        "runtime": {
+          "CikExtractor.dll": {}
+        }
+      },
+      "BouncyCastle.Cryptography/2.5.1": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.5.1.28965"
+          }
+        }
+      },
+      "Registry/1.5.0": {
+        "dependencies": {
+          "Serilog": "4.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Registry.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.5.0.0"
+          }
+        }
+      },
+      "Serilog/4.2.0": {
+        "runtime": {
+          "lib/net9.0/Serilog.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        }
+      },
+      "Spectre.Console/0.49.2-preview.0.75": {
+        "runtime": {
+          "lib/net9.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.49.2.0"
+          }
+        }
+      },
+      "Spectre.Console.Cli/0.49.2-preview.0.75": {
+        "dependencies": {
+          "Spectre.Console": "0.49.2-preview.0.75"
+        },
+        "runtime": {
+          "lib/net9.0/Spectre.Console.Cli.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.49.2.0"
+          }
+        },
+        "resources": {
+          "lib/net9.0/de/Spectre.Console.Cli.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net9.0/es/Spectre.Console.Cli.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net9.0/fr/Spectre.Console.Cli.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net9.0/it/Spectre.Console.Cli.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net9.0/ja/Spectre.Console.Cli.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net9.0/ko/Spectre.Console.Cli.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net9.0/pt/Spectre.Console.Cli.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/net9.0/ru/Spectre.Console.Cli.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net9.0/sv/Spectre.Console.Cli.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net9.0/zh-Hans/Spectre.Console.Cli.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
+      "System.CodeDom/9.0.2": {
+        "runtime": {
+          "lib/net9.0/System.CodeDom.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
+      "System.Management/9.0.2": {
+        "dependencies": {
+          "System.CodeDom": "9.0.2"
+        },
+        "runtime": {
+          "runtimes/win/lib/net9.0/System.Management.dll": {
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CikExtractor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BouncyCastle.Cryptography/2.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zy8TMeTP+1FH2NrLaNZtdRbBdq7u5MI+NFZQOBSM69u5RFkciinwzV2eveY6Kjf5MzgsYvvl6kTStsj3JrXqkg==",
+      "path": "bouncycastle.cryptography/2.5.1",
+      "hashPath": "bouncycastle.cryptography.2.5.1.nupkg.sha512"
+    },
+    "Registry/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fyYBVKcqzMtU1uP8ThA6vQhEV9CHSMQVuIo0xUGZL2a4VtAt8epTd7r42A1bubr6OKjkyrWCuOsZjISiJKyGoQ==",
+      "path": "registry/1.5.0",
+      "hashPath": "registry.1.5.0.nupkg.sha512"
+    },
+    "Serilog/4.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gmoWVOvKgbME8TYR+gwMf7osROiWAURterc6Rt2dQyX7wtjZYpqFiA/pY6ztjGQKKV62GGCyOcmtP1UKMHgSmA==",
+      "path": "serilog/4.2.0",
+      "hashPath": "serilog.4.2.0.nupkg.sha512"
+    },
+    "Spectre.Console/0.49.2-preview.0.75": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yzmL1iud3EcOWR+PglbhVFDOrbd4+jeeh6KfVjWaxmF5K3RQ7tHC9ZfQ15z4L76rzZS41HIr+ETDzgSz4cvSBQ==",
+      "path": "spectre.console/0.49.2-preview.0.75",
+      "hashPath": "spectre.console.0.49.2-preview.0.75.nupkg.sha512"
+    },
+    "Spectre.Console.Cli/0.49.2-preview.0.75": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ue+uMU9sO/Ftph4VWiixgPBc8adKMiSw5xEX/Q3PuqZs5qfzBFceaNI3JTi1UFrpje0RGhF+0FNMEefVoul7ug==",
+      "path": "spectre.console.cli/0.49.2-preview.0.75",
+      "hashPath": "spectre.console.cli.0.49.2-preview.0.75.nupkg.sha512"
+    },
+    "System.CodeDom/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VnlzS7afE8LaXXwKdHOe2D6FcDekqThzU1E67CONV7gp71q3zposqcSeXH+PxARMXC5j31efwXrxP8VGvD70Ug==",
+      "path": "system.codedom/9.0.2",
+      "hashPath": "system.codedom.9.0.2.nupkg.sha512"
+    },
+    "System.Management/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U6SXFe1kfJySAvcPPdbdb+fycaY+3c/KV0PwTjurvrALMnlSm37s5z8zcoI7qbkV2kYhxiLfsZRGiF0XeSsqSQ==",
+      "path": "system.management/9.0.2",
+      "hashPath": "system.management.9.0.2.nupkg.sha512"
+    }
+  }
+}

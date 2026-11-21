@@ -1,0 +1,340 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/win-x64": {
+      "XvdTool.Streaming/1.0.0": {
+        "dependencies": {
+          "DotNext.Unsafe": "6.12.1",
+          "LTRData.DiscUtils.Ntfs": "1.0.90",
+          "LibXboxOne": "1.0.0",
+          "Spectre.Console.Cli": "0.57.2"
+        },
+        "runtime": {
+          "XvdTool.Streaming.dll": {}
+        }
+      },
+      "DotNext/6.12.1": {
+        "dependencies": {
+          "System.IO.Hashing": "10.0.14"
+        },
+        "runtime": {
+          "lib/net10.0/DotNext.dll": {
+            "assemblyVersion": "6.12.1.0",
+            "fileVersion": "6.12.1.0",
+            "localPath": "DotNext.dll"
+          }
+        }
+      },
+      "DotNext.Unsafe/6.12.1": {
+        "dependencies": {
+          "DotNext": "6.12.1"
+        },
+        "runtime": {
+          "lib/net10.0/DotNext.Unsafe.dll": {
+            "assemblyVersion": "6.12.1.0",
+            "fileVersion": "6.12.1.0",
+            "localPath": "DotNext.Unsafe.dll"
+          }
+        }
+      },
+      "LTRData.DiscUtils.Core/1.0.90": {
+        "dependencies": {
+          "LTRData.DiscUtils.Streams": "1.0.90"
+        },
+        "runtime": {
+          "lib/net10.0/DiscUtils.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.90.0",
+            "localPath": "DiscUtils.Core.dll"
+          }
+        }
+      },
+      "LTRData.DiscUtils.Ntfs/1.0.90": {
+        "dependencies": {
+          "LTRData.DiscUtils.Core": "1.0.90"
+        },
+        "runtime": {
+          "lib/net10.0/DiscUtils.Ntfs.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.90.0",
+            "localPath": "DiscUtils.Ntfs.dll"
+          }
+        }
+      },
+      "LTRData.DiscUtils.Streams/1.0.90": {
+        "dependencies": {
+          "LTRData.Extensions": "1.0.23"
+        },
+        "runtime": {
+          "lib/net10.0/DiscUtils.Streams.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.90.0",
+            "localPath": "DiscUtils.Streams.dll"
+          }
+        }
+      },
+      "LTRData.DiscUtils.Vhd/1.0.90": {
+        "dependencies": {
+          "LTRData.DiscUtils.Core": "1.0.90"
+        },
+        "runtime": {
+          "lib/net10.0/DiscUtils.Vhd.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.90.0",
+            "localPath": "DiscUtils.Vhd.dll"
+          }
+        }
+      },
+      "LTRData.Extensions/1.0.23": {
+        "runtime": {
+          "lib/net10.0/LTRData.Extensions.dll": {
+            "assemblyVersion": "1.0.23.0",
+            "fileVersion": "1.0.23.0",
+            "localPath": "LTRData.Extensions.dll"
+          }
+        }
+      },
+      "Portable.BouncyCastle/1.9.0": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.1",
+            "localPath": "BouncyCastle.Crypto.dll"
+          }
+        }
+      },
+      "Spectre.Console/0.57.2": {
+        "dependencies": {
+          "Spectre.Console.Ansi": "0.57.2"
+        },
+        "runtime": {
+          "lib/net10.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.57.2.0",
+            "localPath": "Spectre.Console.dll"
+          }
+        }
+      },
+      "Spectre.Console.Ansi/0.57.2": {
+        "runtime": {
+          "lib/net10.0/Spectre.Console.Ansi.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.57.2.0",
+            "localPath": "Spectre.Console.Ansi.dll"
+          }
+        }
+      },
+      "Spectre.Console.Cli/0.57.2": {
+        "dependencies": {
+          "Spectre.Console": "0.57.2"
+        },
+        "runtime": {
+          "lib/net10.0/Spectre.Console.Cli.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.57.2.0",
+            "localPath": "Spectre.Console.Cli.dll"
+          }
+        },
+        "resources": {
+          "lib/net10.0/de/Spectre.Console.Cli.resources.dll": {
+            "locale": "de",
+            "localPath": "de/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/es/Spectre.Console.Cli.resources.dll": {
+            "locale": "es",
+            "localPath": "es/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/fr/Spectre.Console.Cli.resources.dll": {
+            "locale": "fr",
+            "localPath": "fr/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/it/Spectre.Console.Cli.resources.dll": {
+            "locale": "it",
+            "localPath": "it/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/ja/Spectre.Console.Cli.resources.dll": {
+            "locale": "ja",
+            "localPath": "ja/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/ko/Spectre.Console.Cli.resources.dll": {
+            "locale": "ko",
+            "localPath": "ko/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/pt/Spectre.Console.Cli.resources.dll": {
+            "locale": "pt",
+            "localPath": "pt/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/ru/Spectre.Console.Cli.resources.dll": {
+            "locale": "ru",
+            "localPath": "ru/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/sv/Spectre.Console.Cli.resources.dll": {
+            "locale": "sv",
+            "localPath": "sv/Spectre.Console.Cli.resources.dll"
+          },
+          "lib/net10.0/zh-Hans/Spectre.Console.Cli.resources.dll": {
+            "locale": "zh-Hans",
+            "localPath": "zh-Hans/Spectre.Console.Cli.resources.dll"
+          }
+        }
+      },
+      "System.Formats.Cbor/11.0.0": {
+        "runtime": {
+          "lib/net10.0/System.Formats.Cbor.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.26.53018",
+            "localPath": "System.Formats.Cbor.dll"
+          }
+        }
+      },
+      "System.IO.Hashing/10.0.14": {
+        "runtime": {
+          "lib/net10.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.14",
+            "fileVersion": "10.0.1426.52326",
+            "localPath": "System.IO.Hashing.dll"
+          }
+        }
+      },
+      "System.IO.Packaging/11.0.0": {
+        "runtime": {
+          "lib/net10.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.26.53018",
+            "localPath": "System.IO.Packaging.dll"
+          }
+        }
+      },
+      "LibXboxOne/1.0.0": {
+        "dependencies": {
+          "LTRData.DiscUtils.Ntfs": "1.0.90",
+          "LTRData.DiscUtils.Vhd": "1.0.90",
+          "Portable.BouncyCastle": "1.9.0",
+          "System.Formats.Cbor": "11.0.0",
+          "System.IO.Packaging": "11.0.0"
+        },
+        "runtime": {
+          "LibXboxOne.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "XvdTool.Streaming/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DotNext/6.12.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-baOTLY+l1xACdk/4yUPCgu4pJlDLuHr85UfmQdJHyi/SjZFio9CGoaqthGNeRiid3hsVWMvDTHwxw9Ib9kkaMw==",
+      "path": "dotnext/6.12.1",
+      "hashPath": "dotnext.6.12.1.nupkg.sha512"
+    },
+    "DotNext.Unsafe/6.12.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-69A1mwnJQDpG53k1jqe4Prq/hcpoCd/M40DuC9xZ4R5rP05NRI+4xbgfd2/OeXLwldcAkkUA3FNKDwOo88z2vA==",
+      "path": "dotnext.unsafe/6.12.1",
+      "hashPath": "dotnext.unsafe.6.12.1.nupkg.sha512"
+    },
+    "LTRData.DiscUtils.Core/1.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9nNWwk7l4andh54Sk0TbualktJ299x49g/449xBn624T44WYdB0q8CrbO2W3+8MwyNuy3eDE4LGL8eQnjwKm2Q==",
+      "path": "ltrdata.discutils.core/1.0.90",
+      "hashPath": "ltrdata.discutils.core.1.0.90.nupkg.sha512"
+    },
+    "LTRData.DiscUtils.Ntfs/1.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tQoVC4KqENUnum5qXbMra4LAHl75CTwf9DjeoO8OpDLRUS1QT9j/EvB7GyzbRxFijv9nSUcTXMsp+F6zBXhk0w==",
+      "path": "ltrdata.discutils.ntfs/1.0.90",
+      "hashPath": "ltrdata.discutils.ntfs.1.0.90.nupkg.sha512"
+    },
+    "LTRData.DiscUtils.Streams/1.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gh3aYa0S+/YNmkWzLMiMSpjCrxeB7sSbQB7eMJBrjap8gbHhrcAHS9bOEwDUowUixHOOz9ZjQiVqXTTUMT4inw==",
+      "path": "ltrdata.discutils.streams/1.0.90",
+      "hashPath": "ltrdata.discutils.streams.1.0.90.nupkg.sha512"
+    },
+    "LTRData.DiscUtils.Vhd/1.0.90": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y3FZFrkYfTRQsscC22HYOS0HN6VfWuc/yIWfqG196HoH9NyAoSLs95rFPKRIMlzsH8S/N4lCEhSjZWa4ehZWqw==",
+      "path": "ltrdata.discutils.vhd/1.0.90",
+      "hashPath": "ltrdata.discutils.vhd.1.0.90.nupkg.sha512"
+    },
+    "LTRData.Extensions/1.0.23": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K+Lb4/siT7+K50r4kndp5QaJLgupf5zE4qe8QxqwF0uSAiZtodsiFc3+i9IQpkGGMDwi83isG9qYA3JOJrO7UA==",
+      "path": "ltrdata.extensions/1.0.23",
+      "hashPath": "ltrdata.extensions.1.0.23.nupkg.sha512"
+    },
+    "Portable.BouncyCastle/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
+      "path": "portable.bouncycastle/1.9.0",
+      "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
+    "Spectre.Console/0.57.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wzsB+P9i6F9G+cFOJxRotCiQWNSzZVAMxi8YMiHlGXXU1JLMXGp7zSSqBMmROZS2bzpK5jk+Saa7Evp8HwqhKg==",
+      "path": "spectre.console/0.57.2",
+      "hashPath": "spectre.console.0.57.2.nupkg.sha512"
+    },
+    "Spectre.Console.Ansi/0.57.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y1+u73shwP+JYHmrkdN6bSt2kaGBEAafhi2nrecczbXdFRey+k7J/WF9YPfcB0rqivv2S8fmif6FSBq9m/AFvw==",
+      "path": "spectre.console.ansi/0.57.2",
+      "hashPath": "spectre.console.ansi.0.57.2.nupkg.sha512"
+    },
+    "Spectre.Console.Cli/0.57.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EAiwpJXAAvhyyzH6hljVo7z19ahG7WM+zViKEHtUagyPymYfJrsainXDOHzUakBHj6VYEpuaqPAShgqvs1N9aQ==",
+      "path": "spectre.console.cli/0.57.2",
+      "hashPath": "spectre.console.cli.0.57.2.nupkg.sha512"
+    },
+    "System.Formats.Cbor/11.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2ULEPU67LRt4YVwBnCk1OhjsJspIBzg1JlDkN2hnZm9im3fC9bSbVQorLraOIcLMlA6/8eWQG1fjTpurHkIFZw==",
+      "path": "system.formats.cbor/11.0.0",
+      "hashPath": "system.formats.cbor.11.0.0.nupkg.sha512"
+    },
+    "System.IO.Hashing/10.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lVqovhCt3HlZe7ONG5ydaj6BYwYI004gldVfMMkJl/lR5ueeCtWNpW4nejOX75sPmzm8vXCxB69GqwHaYCnyUQ==",
+      "path": "system.io.hashing/10.0.14",
+      "hashPath": "system.io.hashing.10.0.14.nupkg.sha512"
+    },
+    "System.IO.Packaging/11.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OGuoYphprhaXgQgzsCgLVpTn8STkTxFmf1Rv/2zkMMFsz1AsB4pYdUgDS2xAsByA2w3rsOphnaR12xJE3pUWeg==",
+      "path": "system.io.packaging/11.0.0",
+      "hashPath": "system.io.packaging.11.0.0.nupkg.sha512"
+    },
+    "LibXboxOne/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
